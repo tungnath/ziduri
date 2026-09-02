@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Float Note — A floating note editor for your browser | Ziduri</title>
+<meta name="description" content="Float Note is a translucent floating note editor that saves notes per webpage right in your browser. Available now on the Chrome Web Store — no accounts, no cloud sync, everything stays on your device.">
+<link rel="canonical" href="https://ziduri.in/products/browser-native-notes/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Float Note — A floating note editor for your browser">
+<meta property="og:description" content="A translucent floating note editor that saves notes per webpage, right in your browser. Available now on the Chrome Web Store.">
+<meta property="og:url" content="https://ziduri.in/products/browser-native-notes/">
+<meta property="og:image" content="https://ziduri.in/assets/products/browser-native-notes/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Float Note — A floating note editor for your browser">
+<meta name="twitter:description" content="Save notes per webpage, right in your browser. Available now on the Chrome Web Store.">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/browser-native-notes/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Float Note",
+  "applicationCategory": "BrowserApplication",
+  "operatingSystem": "Chrome",
+  "description": "A translucent floating note editor that saves notes per webpage, right in your browser. Notes auto-save locally with no cloud sync.",
+  "url": "https://ziduri.in/products/browser-native-notes/",
+  "installUrl": "https://chromewebstore.google.com/detail/float-note/hdgchocbjkhhjanmnjfokmlijdlmbgpp",
+  "softwareVersion": "1.0.0",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "Ziduri", "url": "https://ziduri.in/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Float Note", "item": "https://ziduri.in/products/browser-native-notes/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where are my notes stored?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Locally on your device, using Chrome's chrome.storage.local API. Notes never leave your browser." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Float Note sync my notes across devices?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Float Note is local-only by design — it does not sync notes to the cloud or to other devices." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Float Note send any data over the network?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Float Note makes no network requests and includes no analytics or tracking." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my notes if I uninstall the extension?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Uninstalling Float Note deletes all notes stored by the extension, since they live in the extension's local storage." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Float Note available on the Chrome Web Store?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Float Note is published on the Chrome Web Store — search for \"Float Note\" or use the Add to Chrome button on this page." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Float Note</span>
+  </nav>
+
+  <section class="section--tight container">
+    <div style="display:flex; gap: var(--z-space-4); align-items:center; margin-bottom: var(--z-space-4);">
+      <img src="/assets/products/browser-native-notes/icon-128.png" alt="" width="56" height="56" style="border-radius: var(--z-radius-md); border:1px solid var(--z-border);">
+      <div>
+        <span class="badge badge--success">Available now · Chrome Web Store</span>
+      </div>
+    </div>
+    <h1 class="section-title" style="font-size: var(--z-fs-3xl); max-width: 700px;">Float Note: a floating note editor that lives right on the page</h1>
+    <p class="section-lede" style="max-width: 620px; font-size: var(--z-fs-lg);">A translucent, draggable note editor that opens on top of any webpage and remembers what you wrote — tied to the exact page you wrote it on. No accounts. No cloud sync. Nothing leaves your browser.</p>
+    <div class="hero__actions" style="margin-top: var(--z-space-5);">
+      <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/float-note/hdgchocbjkhhjanmnjfokmlijdlmbgpp" data-track="store_click" data-track-label="float-note-store" rel="noopener">Add to Chrome</a>
+      <a class="btn btn-secondary" href="#installation">How to install</a>
+    </div>
+    <p class="text-tertiary" style="font-size: var(--z-fs-xs); margin-top: var(--z-space-3);">Free, published on the Chrome Web Store. Version 1.0.0.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap: var(--z-space-5);">
+      <div class="illustration">
+        <img src="/assets/products/browser-native-notes/store/screenshot-popup.png" alt="Float Note popup showing Open Editor and Clear All buttons above a list of notes saved for the current page" width="480" height="520" loading="lazy">
+      </div>
+      <div class="illustration">
+        <img src="/assets/products/browser-native-notes/store/screenshot-editor.png" alt="The Float Note floating editor open on a page, showing a note in progress with a Save button" width="520" height="580" loading="lazy">
+      </div>
+    </div>
+    <p class="text-tertiary" style="font-size: var(--z-fs-xs); margin-top: var(--z-space-3); text-align:center;">Screenshots from the Chrome Web Store listing.</p>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="problem-heading">
+    <div class="section-head">
+      <span class="eyebrow">Problem &amp; solution</span>
+      <h2 class="section-title" id="problem-heading">Notes that actually stay with the page</h2>
+      <p class="section-lede">Sticky-note apps and generic note-taking tools lose the connection between a thought and the page that triggered it. Float Note keeps that connection by design: open the editor on any page, and it's tied to that URL from the start.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="features-heading">
+    <div class="section-head">
+      <span class="eyebrow">Features</span>
+      <h2 class="section-title" id="features-heading">What Float Note does</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Floating, translucent editor</h3>
+        <p class="feature-item__desc">A draggable editor overlays the current page without navigating away from it.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Per-URL note storage</h3>
+        <p class="feature-item__desc">Each note is keyed to the page URL and the moment it was created, so you can find it again later.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Auto-save every 2 seconds</h3>
+        <p class="feature-item__desc">Changes save automatically as you type, with a manual Save option for immediate persistence.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Resume on return</h3>
+        <p class="feature-item__desc">Come back to the same URL — in the same tab or a new one — and your note is ready to continue.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Multiple notes per page</h3>
+        <p class="feature-item__desc">Create more than one note on a page; the popup lists every note tied to the current URL.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Local-only storage</h3>
+        <p class="feature-item__desc">Everything is saved with Chrome's built-in local storage. No account, no server, no network request.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="usecases-heading">
+    <div class="section-head">
+      <span class="eyebrow">Use cases</span>
+      <h2 class="section-title" id="usecases-heading">Who Float Note is for</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Research &amp; reading</h3>
+        <p class="feature-item__desc">Jot down a thought while reading a long article or documentation page, without switching apps.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Reference while browsing</h3>
+        <p class="feature-item__desc">Keep quick working notes next to the page you're actively using, for as long as you need them.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Revisiting pages</h3>
+        <p class="feature-item__desc">Leave yourself context on a page you'll come back to, so it's there the next time you open it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="how-heading">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-title" id="how-heading">From click to saved note</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3 class="step__title">Open the editor</h3>
+        <p class="step__desc">Click the Float Note icon in your toolbar, then "Open Editor" on the current page.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Write</h3>
+        <p class="step__desc">The editor appears with any previously saved content already loaded, ready to continue.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">It saves itself</h3>
+        <p class="step__desc">Your note auto-saves every 2 seconds, or click Save for an immediate write.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Come back anytime</h3>
+        <p class="step__desc">Revisit the same URL later and reopen the icon — your note is exactly where you left it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" id="installation" aria-labelledby="install-heading">
+    <div class="section-head">
+      <span class="eyebrow">Installation</span>
+      <h2 class="section-title" id="install-heading">Install Float Note</h2>
+      <p class="section-lede">Float Note is published on the Chrome Web Store — installing it takes one click.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3 class="step__title">Open the listing</h3>
+        <p class="step__desc">Visit the <a href="https://chromewebstore.google.com/detail/float-note/hdgchocbjkhhjanmnjfokmlijdlmbgpp" rel="noopener">Float Note page on the Chrome Web Store</a>.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Add to Chrome</h3>
+        <p class="step__desc">Click "Add to Chrome," then confirm in the permissions prompt.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Pin it</h3>
+        <p class="step__desc">Click the puzzle-piece icon in your toolbar and pin Float Note so it's always one click away.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Start a note</h3>
+        <p class="step__desc">Click the icon on any page and choose "Open Editor" to start writing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="permissions-heading">
+    <div class="section-head">
+      <span class="eyebrow">Permissions</span>
+      <h2 class="section-title" id="permissions-heading">What Float Note asks for, and why</h2>
+      <p class="section-lede">Float Note requests the minimum permissions needed to run. Nothing here enables network access or data collection — see the <a href="/privacy/browser-native-notes/">privacy policy</a> for the full picture.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="perm-table">
+        <thead>
+          <tr><th>Permission</th><th>Why it's needed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>storage</code></td><td>Saves your notes locally using Chrome's storage API.</td></tr>
+          <tr><td><code>tabs</code></td><td>Reads the current tab's URL so a note can be tied to the right page.</td></tr>
+          <tr><td><code>scripting</code></td><td>Injects the floating editor interface into the page you're viewing.</td></tr>
+          <tr><td><code>host_permissions: &lt;all_urls&gt;</code></td><td>Lets the editor open on any site, since notes can be created on any page you visit.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="faq-heading">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title" id="faq-heading">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Where are my notes stored?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Locally on your device, using Chrome's <code>chrome.storage.local</code> API. Notes never leave your browser.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does Float Note sync my notes across devices?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. Float Note is local-only by design — it does not sync notes to the cloud or to other devices.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does Float Note send any data over the network?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. Float Note makes no network requests and includes no analytics or tracking.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens to my notes if I uninstall the extension?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Uninstalling Float Note deletes all notes stored by the extension, since they live in the extension's local storage.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is Float Note available on the Chrome Web Store?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Yes. Float Note is published on the Chrome Web Store — search for "Float Note" or use the Add to Chrome button on this page.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">More resources</h2>
+        <p class="text-secondary">Documentation, release notes and privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/browser-native-notes/docs/" data-track="documentation_open">Documentation</a>
+        <a class="btn btn-secondary" href="/products/browser-native-notes/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/browser-native-notes/" data-track="privacy_open">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="related-heading">
+    <div class="section-head">
+      <span class="eyebrow">Related</span>
+      <h2 class="section-title" id="related-heading">More from Ziduri</h2>
+    </div>
+    <div class="product-grid">
+      <a class="card product-card" href="/products/liteview/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/liteview/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Desktop Application</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">LiteView</h3>
+          <p class="product-card__desc">A ~2 MB image viewer for Windows, Linux and macOS that opens SVG, WebP and AVIF natively.</p>
+        </div>
+      </a>
+      <a class="card product-card" href="/products/ephemera/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/ephemera/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Web App</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Ephemera</h3>
+          <p class="product-card__desc">Create a short-lived room and exchange text and images in real time. No accounts, no history.</p>
+        </div>
+      </a>
+      <a class="card product-card" href="/products/anon-postal/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/anon-postal/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Web App</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Anon Postal</h3>
+          <p class="product-card__desc">Publish a public post with no account, or sign in for a private workspace with a custom expiry.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

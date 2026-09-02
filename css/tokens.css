@@ -1,0 +1,214 @@
+/*
+  Ziduri Design Tokens
+  Single source of truth for color, type, spacing and motion.
+
+  Visual language: bold "clay" cards — thick ink borders, hard offset
+  shadows (no blur), large radii, a warm paper background and a playful
+  rounded display face for headings. Adapted from a neubrutalist/claymorphism
+  reference, with Ziduri's own purple as the primary accent so it stays
+  consistent with the logo and product icons already shipped.
+
+  Light palette lives on :root. Dark palette is layered on via
+  prefers-color-scheme and overridden by an explicit [data-theme] choice.
+  Dark mode inverts the border/shadow language: --z-ink becomes a light
+  warm tone instead of a dark one, so the hard-edge "clay" borders and
+  shadows stay legible against a dark surface instead of vanishing into it.
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap");
+
+:root {
+  /* Brand */
+  --z-brand-500: #6d5efc;
+  --z-brand-600: #5b4bf5;
+  --z-brand-700: #4338ca;
+  --z-brand-50: #f2f0ff;
+
+  /* Ink — the universal border + hard-shadow color. Dark in light mode. */
+  --z-ink: #241f33;
+
+  /* Surfaces */
+  --z-bg: #fdf8f1;
+  --z-bg-raised: #ffffff;
+  --z-bg-subtle: #f3ecff;
+  --z-bg-inset: #ece2fb;
+  --z-border: #e3d9f2;
+  --z-border-strong: #c9bade;
+
+  /* Text */
+  --z-text-primary: #241f33;
+  --z-text-secondary: #5b5270;
+  --z-text-tertiary: #8a8098;
+  --z-text-on-brand: #ffffff;
+  --z-text-link: var(--z-brand-700);
+
+  /* Accent gradient (used sparingly) */
+  --z-gradient: linear-gradient(135deg, #6d5efc 0%, #4338ca 100%);
+  --z-gradient-soft: linear-gradient(135deg, #f2f0ff 0%, #eef1ff 100%);
+
+  /* Pastel accent chips, cycled across feature/category cards */
+  --z-accent-coral: #fdbcb4;
+  --z-accent-mint: #aef2c9;
+  --z-accent-sky: #add8e6;
+  --z-accent-lavender: #ddd0fb;
+  --z-accent-fg: var(--z-ink);
+
+  /* Status */
+  --z-success: #1a8a5f;
+  --z-success-bg: #d9f5e6;
+  --z-warning: #9a6400;
+  --z-warning-bg: #fbe7b8;
+  --z-info: #2559d6;
+  --z-info-bg: #dbe6ff;
+
+  /* Focus */
+  --z-focus-ring: #4338ca;
+  --z-focus-ring-offset: #fdf8f1;
+
+  /* Soft shadows (used sparingly, e.g. under the sticky header) */
+  --z-shadow-sm: 0 1px 2px rgba(36, 31, 51, 0.08);
+  --z-shadow-md: 0 6px 20px rgba(36, 31, 51, 0.1);
+  --z-shadow-lg: 0 20px 48px rgba(36, 31, 51, 0.16);
+
+  /* Hard "clay" shadows: flat offset, no blur, drawn in --z-ink */
+  --z-border-w: 3px;
+  --z-border-w-thin: 1.6px;
+  --z-hard-sm: 3px 3px 0 0 var(--z-ink);
+  --z-hard-sm-press: 1px 1px 0 0 var(--z-ink);
+  --z-hard-md: 4px 4px 0 0 var(--z-ink);
+  --z-hard-md-press: 2px 2px 0 0 var(--z-ink);
+  --z-hard-lg: 6px 6px 0 0 var(--z-ink);
+  --z-hard-lg-press: 4px 4px 0 0 var(--z-ink);
+  --z-clay-inset: inset 0 -4px 0 0 rgba(0, 0, 0, 0.08);
+
+  /* Typography */
+  --z-font-display: "Fredoka", "Segoe UI", sans-serif;
+  --z-font-sans: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --z-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --z-fs-xs: 0.8125rem;
+  --z-fs-sm: 0.9375rem;
+  --z-fs-md: 1.0625rem;
+  --z-fs-lg: 1.25rem;
+  --z-fs-xl: 1.5rem;
+  --z-fs-2xl: 2rem;
+  --z-fs-3xl: 2.75rem;
+  --z-fs-4xl: 3.5rem;
+
+  --z-lh-tight: 1.15;
+  --z-lh-snug: 1.35;
+  --z-lh-normal: 1.6;
+
+  /* Spacing scale */
+  --z-space-1: 0.25rem;
+  --z-space-2: 0.5rem;
+  --z-space-3: 0.75rem;
+  --z-space-4: 1rem;
+  --z-space-5: 1.5rem;
+  --z-space-6: 2rem;
+  --z-space-7: 3rem;
+  --z-space-8: 4rem;
+  --z-space-9: 6rem;
+  --z-space-10: 8rem;
+
+  /* Radius */
+  --z-radius-sm: 10px;
+  --z-radius-md: 16px;
+  --z-radius-lg: 24px;
+  --z-radius-full: 999px;
+
+  /* Layout — generous, closer to full viewport width */
+  --z-container: 1320px;
+  --z-container-narrow: 820px;
+  --z-gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* Motion */
+  --z-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --z-duration-fast: 120ms;
+  --z-duration-base: 200ms;
+  --z-duration-slow: 360ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --z-ink: #efe7fb;
+
+    --z-bg: #14111d;
+    --z-bg-raised: #1e1929;
+    --z-bg-subtle: #191521;
+    --z-bg-inset: #241e30;
+    --z-border: #332b45;
+    --z-border-strong: #473c5d;
+
+    --z-text-primary: #f5f1fb;
+    --z-text-secondary: #c7bed9;
+    --z-text-tertiary: #8f84a6;
+    --z-text-link: #b4a6ff;
+
+    --z-gradient: linear-gradient(135deg, #8f7dff 0%, #6a5bf0 100%);
+    --z-gradient-soft: linear-gradient(135deg, #241e35 0%, #211a34 100%);
+
+    --z-accent-coral: #5c332e;
+    --z-accent-mint: #21402f;
+    --z-accent-sky: #223a49;
+    --z-accent-lavender: #362a54;
+    --z-accent-fg: var(--z-ink);
+
+    --z-success: #6fe3ae;
+    --z-success-bg: #17301f;
+    --z-warning: #f0b74f;
+    --z-warning-bg: #3a2c0e;
+    --z-info: #8fb0ff;
+    --z-info-bg: #1a2440;
+
+    --z-focus-ring: #b4a6ff;
+    --z-focus-ring-offset: #14111d;
+
+    --z-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --z-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+    --z-shadow-lg: 0 24px 56px rgba(0, 0, 0, 0.55);
+
+    --z-clay-inset: inset 0 -4px 0 0 rgba(0, 0, 0, 0.35);
+  }
+}
+
+:root[data-theme="dark"] {
+  --z-ink: #efe7fb;
+
+  --z-bg: #14111d;
+  --z-bg-raised: #1e1929;
+  --z-bg-subtle: #191521;
+  --z-bg-inset: #241e30;
+  --z-border: #332b45;
+  --z-border-strong: #473c5d;
+
+  --z-text-primary: #f5f1fb;
+  --z-text-secondary: #c7bed9;
+  --z-text-tertiary: #8f84a6;
+  --z-text-link: #b4a6ff;
+
+  --z-gradient: linear-gradient(135deg, #8f7dff 0%, #6a5bf0 100%);
+  --z-gradient-soft: linear-gradient(135deg, #241e35 0%, #211a34 100%);
+
+  --z-accent-coral: #5c332e;
+  --z-accent-mint: #21402f;
+  --z-accent-sky: #223a49;
+  --z-accent-lavender: #362a54;
+  --z-accent-fg: var(--z-ink);
+
+  --z-success: #6fe3ae;
+  --z-success-bg: #17301f;
+  --z-warning: #f0b74f;
+  --z-warning-bg: #3a2c0e;
+  --z-info: #8fb0ff;
+  --z-info-bg: #1a2440;
+
+  --z-focus-ring: #b4a6ff;
+  --z-focus-ring-offset: #14111d;
+
+  --z-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --z-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --z-shadow-lg: 0 24px 56px rgba(0, 0, 0, 0.55);
+
+  --z-clay-inset: inset 0 -4px 0 0 rgba(0, 0, 0, 0.35);
+}

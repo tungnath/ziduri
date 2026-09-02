@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ephemera Documentation — Ziduri</title>
+<meta name="description" content="How Ephemera's rooms, messaging and expiry work, and its current limitations.">
+<link rel="canonical" href="https://ziduri.in/products/ephemera/docs/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Ephemera Documentation">
+<meta property="og:description" content="How Ephemera's rooms, messaging and expiry work, and its current limitations.">
+<meta property="og:url" content="https://ziduri.in/products/ephemera/docs/">
+<meta property="og:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ephemera Documentation">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Ephemera", "item": "https://ziduri.in/products/ephemera/"},
+    {"@type": "ListItem", "position": 4, "name": "Documentation", "item": "https://ziduri.in/products/ephemera/docs/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/ephemera/">Ephemera</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Documentation</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Documentation</span>
+    <h1 class="section-title">Ephemera documentation</h1>
+    <p class="section-lede">How rooms, messaging and expiry work under the hood, and what Ephemera deliberately doesn't do yet.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <h2>How rooms work</h2>
+      <p>Creating a room requests a short room code from the server. Anyone with that code — or a direct <code>/r/&lt;room-id&gt;</code> link, which auto-joins — can enter the same room. Everyone connected to a room communicates over a shared WebSocket connection, so text and images sent by one participant appear instantly for everyone else in the room.</p>
+
+      <h2>What you can send</h2>
+      <ul>
+        <li>Text messages, delivered instantly to everyone in the room.</li>
+        <li>Images up to 2 MB. Click a shared image to open a full-view preview, then copy or download it from there.</li>
+      </ul>
+      <p>Only images are supported — there is currently no support for other file types.</p>
+
+      <h2>Room lifecycle</h2>
+      <div class="table-scroll">
+        <table class="perm-table">
+          <thead><tr><th>Limit</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Maximum active rooms, system-wide</td><td>3</td></tr>
+            <tr><td>Image size limit</td><td>2 MB</td></tr>
+            <tr><td>Empty room cleanup</td><td>~2 minutes after the last participant leaves</td></tr>
+            <tr><td>Inactive/unused room registry entry</td><td>expires after ~10 minutes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Because the system currently allows only 3 active rooms at once, you may occasionally see a capacity message when trying to create a new room. This is a deliberate constraint of the current MVP, not a bug.</p>
+
+      <h2>What happens if you lose a room code</h2>
+      <p>There is no recovery flow. Ephemera has no accounts, no room directory, and no admin access — by design, since adding any of those would work against the goal of a zero-sign-in, fully ephemeral tool. If you forget a code:</p>
+      <ol>
+        <li>Ask another participant still in the room to share the code or room link again.</li>
+        <li>If nobody has it, create a new room.</li>
+        <li>If the system is at capacity, wait a few minutes for an abandoned room to expire.</li>
+      </ol>
+
+      <h2>Known limitations</h2>
+      <ul>
+        <li>No end-to-end encryption — messages are relayed by the server, not encrypted client-to-client.</li>
+        <li>No authentication or identity — anyone with a room's code can join it.</li>
+        <li>No persistent message history.</li>
+        <li>No room recovery if a code is lost.</li>
+        <li>Images only — no other file types.</li>
+        <li>Image "copy to clipboard" depends on browser support and secure-context rules, so it may not work in every browser.</li>
+      </ul>
+
+      <h2>Source</h2>
+      <p>Ephemera's source is not currently public. If that changes, this page will link to it.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">Related</h2>
+        <p class="text-secondary">Back to the product page, release notes, or privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/ephemera/">Product overview</a>
+        <a class="btn btn-secondary" href="/products/ephemera/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/ephemera/">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

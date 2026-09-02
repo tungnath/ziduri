@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anon Postal Documentation — Ziduri</title>
+<meta name="description" content="How posting, expiry and deletion work in Anon Postal, and how sign-in with Google fits in.">
+<link rel="canonical" href="https://ziduri.in/products/anon-postal/docs/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Anon Postal Documentation">
+<meta property="og:description" content="How posting, expiry and deletion work in Anon Postal.">
+<meta property="og:url" content="https://ziduri.in/products/anon-postal/docs/">
+<meta property="og:image" content="https://ziduri.in/assets/products/anon-postal/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anon Postal Documentation">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/anon-postal/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Anon Postal", "item": "https://ziduri.in/products/anon-postal/"},
+    {"@type": "ListItem", "position": 4, "name": "Documentation", "item": "https://ziduri.in/products/anon-postal/docs/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/anon-postal/">Anon Postal</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Documentation</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Documentation</span>
+    <h1 class="section-title">Anon Postal documentation</h1>
+    <p class="section-lede">How posts, visibility, expiry and deletion actually behave.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <h2>Posting: anonymous vs. signed in</h2>
+      <table class="perm-table">
+        <thead><tr><th></th><th>Anonymous</th><th>Signed in (Google)</th></tr></thead>
+        <tbody>
+          <tr><td>Create a public post</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Create a private post</td><td>No — sign-in required</td><td>Yes</td></tr>
+          <tr><td>Choose an expiry window</td><td>No — fixed at 24 hours</td><td>Yes (1h, 1d, 7d, 30d, or never)</td></tr>
+          <tr><td>Edit or delete the post later</td><td>No — nothing to authenticate against</td><td>Yes, for your own posts</td></tr>
+          <tr><td>Appears in the public dashboard</td><td>Yes, if public</td><td>Yes, if public</td></tr>
+        </tbody>
+      </table>
+
+      <h2>How expiry is enforced</h2>
+      <p>When a post is created, the chosen expiry option is converted into a fixed, absolute timestamp stored with the post — not the option label itself. From that point, the app checks the actual timestamp everywhere it matters: a post that has passed its expiry timestamp is excluded from every listing and returns "not found" if visited directly, even before the cleanup job below has run. A post created with "Never" has no expiry timestamp at all and is excluded from expiry checks entirely.</p>
+
+      <h2>How deletion actually happens</h2>
+      <p>Expired posts aren't just hidden — a recurring server-side job (protected by a server-only secret, not reachable by end users) permanently removes any post whose expiry timestamp has passed. Once that job runs, the content is gone from the database, not just from view.</p>
+      <p>Signed-in users can also delete their own posts immediately and permanently at any time from the dashboard. The app checks that the post belongs to the signed-in account before allowing this — nobody can delete a post that isn't theirs.</p>
+      <p>Anonymous posts have no owning account, so there is no way to delete one manually before it expires.</p>
+
+      <h2>Author privacy</h2>
+      <p>Whether a post is anonymous or written by a signed-in user, the app never tells other viewers who wrote it. The only authorship signal ever sent to the browser is whether a post belongs to the person currently viewing it — nothing else about authorship is exposed, even to other signed-in users browsing the public dashboard.</p>
+
+      <h2>Sign-in</h2>
+      <p>Signing in uses Google as the only identity provider. It creates an account record tied to your Google profile (name, email address, profile photo) so posts you mark private, or that you want to edit or delete later, can be tied back to you. See the <a href="/privacy/anon-postal/">privacy policy</a> for exactly what that involves.</p>
+
+      <h2>Stack</h2>
+      <p>Next.js (App Router), Drizzle ORM, Postgres (hosted on Supabase), and Google sign-in via NextAuth.</p>
+
+      <h2>Source</h2>
+      <p>Anon Postal's source is not currently public. If that changes, this page will link to it.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">Related</h2>
+        <p class="text-secondary">Back to the product page, release notes, or privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/anon-postal/">Product overview</a>
+        <a class="btn btn-secondary" href="/products/anon-postal/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/anon-postal/">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

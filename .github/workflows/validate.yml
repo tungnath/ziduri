@@ -1,0 +1,55 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_call:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: SEO metadata and internal link check
+        run: python3 scripts/validate-seo.py
+
+      - name: Sitemap is well-formed XML
+        run: python3 -c "import xml.etree.ElementTree as ET; ET.parse('sitemap.xml')"
+
+      - name: JSON-LD blocks parse as valid JSON
+        run: |
+          python3 - <<'EOF'
+          import json, re, sys, pathlib
+          errors = []
+          for path in pathlib.Path(".").rglob("*.html"):
+              if any(part in {".git", ".github", "node_modules", "ziduri-handbook", "scripts", ".claude"} for part in path.parts):
+                  continue
+              text = path.read_text(encoding="utf-8")
+              for match in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', text, re.S):
+                  try:
+                      json.loads(match.group(1))
+                  except json.JSONDecodeError as e:
+                      errors.append(f"{path}: invalid JSON-LD ({e})")
+          if errors:
+              print("\n".join(errors))
+              sys.exit(1)
+          print("All JSON-LD blocks are valid JSON.")
+          EOF
+
+      - name: HTML validation (html5validator)
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          extra: "--ignore-re=/ziduri-handbook/.*"
+
+      - name: Broken link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --exclude-mail
+            --exclude "^https://ziduri\.in"
+            './**/*.html'
+          fail: true

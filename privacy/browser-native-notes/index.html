@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Float Note Privacy Policy — Ziduri</title>
+<meta name="description" content="Float Note's privacy policy: what data it stores, where it's stored, and what it never does — no accounts, no analytics, no network requests.">
+<link rel="canonical" href="https://ziduri.in/privacy/browser-native-notes/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Float Note Privacy Policy">
+<meta property="og:description" content="What Float Note stores, where, and what it never does.">
+<meta property="og:url" content="https://ziduri.in/privacy/browser-native-notes/">
+<meta property="og:image" content="https://ziduri.in/assets/products/browser-native-notes/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Float Note Privacy Policy">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/browser-native-notes/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://ziduri.in/privacy/"},
+    {"@type": "ListItem", "position": 3, "name": "Float Note", "item": "https://ziduri.in/privacy/browser-native-notes/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/privacy/">Privacy</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Float Note</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Privacy Policy</span>
+    <h1 class="section-title">Float Note Privacy Policy</h1>
+    <p class="text-tertiary" style="font-size: var(--z-fs-sm);">Effective date: March 2026 · Version 1.0 · Applies to the Float Note browser extension</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <div class="callout callout--success" style="margin-bottom: var(--z-space-6);">
+        Float Note does not collect, transmit, or share any personal data. Every note you create stays on your device.
+      </div>
+
+      <h2>Overview</h2>
+      <p>Float Note ("the Extension") is a floating note editor built into your browser. This policy explains exactly what data the Extension handles, where it lives, and what happens to it.</p>
+
+      <h2>What data is processed</h2>
+      <p>Float Note processes only what it needs to provide its core feature — a note tied to the page you're on:</p>
+      <ul>
+        <li><strong>Note content</strong> — the text you type into the editor.</li>
+        <li><strong>Page URL</strong> — the address of the page a note is associated with.</li>
+        <li><strong>Timestamp</strong> — when each note was created, used as part of its storage key.</li>
+      </ul>
+      <p>Float Note does not collect your name, email address, browsing history beyond the current tab's URL, or any analytics or usage data.</p>
+
+      <h2>Where data is stored</h2>
+      <p>All data is stored locally using Chrome's <code>chrome.storage.local</code> API. This means:</p>
+      <ul>
+        <li>Data stays on your device and is never transmitted anywhere.</li>
+        <li>Data is not synced to any cloud service.</li>
+        <li>Data is not shared with Ziduri, the extension developer, or any third party.</li>
+      </ul>
+
+      <h2>Permissions and why they're needed</h2>
+      <div class="table-scroll">
+        <table class="perm-table">
+          <thead><tr><th>Permission</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>storage</code></td><td>Read and write notes to local browser storage.</td></tr>
+            <tr><td><code>tabs</code></td><td>Identify the current tab's URL so a note can be associated with the right page.</td></tr>
+            <tr><td><code>scripting</code></td><td>Inject the floating editor interface into the active page.</td></tr>
+            <tr><td><code>host_permissions</code> (<code>&lt;all_urls&gt;</code>)</td><td>Allow the editor to run on any site you choose to take notes on.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Third parties and analytics</h2>
+      <p>Float Note does not use analytics, tracking, advertising networks, or any third-party service. The extension makes no network requests of any kind — it works entirely offline.</p>
+
+      <h2>Authentication and payments</h2>
+      <p>Float Note has no accounts, sign-in, or payment functionality. There is nothing to authenticate and nothing to purchase.</p>
+
+      <h2>Data retention and deletion</h2>
+      <p>You control your data directly:</p>
+      <ul>
+        <li>Delete an individual note from the extension popup.</li>
+        <li>Use "Clear All" in the popup to remove every note for the current page.</li>
+        <li>Uninstalling the extension permanently deletes all notes stored by it.</li>
+      </ul>
+      <p>Notes are not deleted automatically and persist until you remove them or uninstall the extension.</p>
+
+      <h2>Your rights</h2>
+      <p>Because all data stays on your device and Ziduri never receives or stores it, there is no remote copy of your notes for us to access, export, or delete on your behalf — deletion happens locally, through the extension itself.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>If Float Note's data practices change — for example, if a future version adds optional sync — this policy will be updated first, and the version and effective date above will change accordingly.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy can be sent through the <a href="/contact/">contact page</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

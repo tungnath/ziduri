@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LiteView Privacy Policy — Ziduri</title>
+<meta name="description" content="LiteView's privacy policy: what it stores, where, and what it never does — no accounts, no analytics, no network requests.">
+<link rel="canonical" href="https://ziduri.in/privacy/liteview/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="LiteView Privacy Policy">
+<meta property="og:description" content="What LiteView stores, where, and what it never does.">
+<meta property="og:url" content="https://ziduri.in/privacy/liteview/">
+<meta property="og:image" content="https://ziduri.in/assets/products/liteview/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LiteView Privacy Policy">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/liteview/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://ziduri.in/privacy/"},
+    {"@type": "ListItem", "position": 3, "name": "LiteView", "item": "https://ziduri.in/privacy/liteview/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/privacy/">Privacy</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">LiteView</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Privacy Policy</span>
+    <h1 class="section-title">LiteView Privacy Policy</h1>
+    <p class="text-tertiary" style="font-size: var(--z-fs-sm);">Effective date: July 2026 · Version 1.0 · Applies to the LiteView desktop application, v1.0.0</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <div class="callout callout--success" style="margin-bottom: var(--z-space-6);">
+        LiteView does not collect, transmit, or share any personal data, and it makes no network requests of any kind.
+      </div>
+
+      <h2>Overview</h2>
+      <p>LiteView ("the Application") is a desktop image viewer. This policy explains exactly what data the Application handles, where it lives, and what happens to it.</p>
+
+      <h2>What data is processed</h2>
+      <p>LiteView processes only what it needs to display the images you open:</p>
+      <ul>
+        <li><strong>Image files</strong> — the files and folders you explicitly open are read from disk to display them. LiteView does not scan your filesystem beyond what you point it at.</li>
+        <li><strong>Last opened folder</strong> — the path of the last folder you viewed is saved locally so LiteView can offer to reopen it next time you launch the app.</li>
+      </ul>
+      <p>LiteView does not collect your name, account information, usage analytics, or any data about you as a person.</p>
+
+      <h2>Where data is stored</h2>
+      <p>The "last opened folder" path is stored in a local file next to the application binary, using Neutralinojs's local storage API. It stays on your device and is never transmitted anywhere.</p>
+
+      <h2>What LiteView accesses, and why</h2>
+      <div class="table-scroll">
+        <table class="perm-table">
+          <thead><tr><th>Capability</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Filesystem</td><td>Read the image files and folders you open, and list a folder's contents to build the filmstrip/grid.</td></tr>
+            <tr><td>Local storage</td><td>Remember the last folder you opened.</td></tr>
+            <tr><td>OS dialogs &amp; shell</td><td>Show native file/folder pickers, and an optional "Show in Explorer/Finder" action for the currently viewed file.</td></tr>
+            <tr><td>Window</td><td>Fullscreen and window sizing.</td></tr>
+            <tr><td>Network</td><td>Not used. LiteView has no network permission configured and makes no network requests — it works entirely offline.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Third parties and analytics</h2>
+      <p>LiteView does not use analytics, telemetry, crash reporting, advertising, or any third-party service. All image decoding happens locally through your operating system's own web rendering engine (WebView2, WebKitGTK, or WKWebView).</p>
+
+      <h2>Authentication and payments</h2>
+      <p>LiteView has no accounts, sign-in, or payment functionality. It is free and open source.</p>
+
+      <h2>Data retention and deletion</h2>
+      <p>The only data LiteView stores — the last opened folder path — is overwritten each time you open a new folder. Uninstalling LiteView removes this stored data along with the application itself.</p>
+
+      <h2>Your rights</h2>
+      <p>Because all data stays on your device and Ziduri never receives or stores it, there is no remote copy of your data for us to access, export, or delete — it lives entirely on your machine, under your control.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>If a future version of LiteView changes what it stores or accesses — for example, adding an optional update checker — this policy will be updated first, and the version and effective date above will change accordingly.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy can be sent through the <a href="/contact/">contact page</a> or by opening an issue on the <a href="https://github.com/tungnath/liteview" rel="noopener">GitHub repository</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

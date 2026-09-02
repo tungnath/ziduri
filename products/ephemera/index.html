@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ephemera — No-signup, ephemeral browser messaging | Ziduri</title>
+<meta name="description" content="Ephemera is a minimal web app for browser-to-browser messaging: create a short-lived room, share the code, and exchange text and images in real time. No accounts, no message history.">
+<link rel="canonical" href="https://ziduri.in/products/ephemera/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Ephemera — No-signup, ephemeral browser messaging">
+<meta property="og:description" content="Create a short-lived room, share the code, and exchange text and images in real time. No accounts, no message history.">
+<meta property="og:url" content="https://ziduri.in/products/ephemera/">
+<meta property="og:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ephemera — No-signup, ephemeral browser messaging">
+<meta name="twitter:description" content="Create a short-lived room and exchange text and images in real time. No accounts, no history.">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Ephemera",
+  "applicationCategory": "CommunicationApplication",
+  "operatingSystem": "Any (web browser)",
+  "description": "A minimal browser-to-browser messaging web app: create a short-lived room, share the code, and exchange text and images over WebSockets in real time. No accounts, no message history.",
+  "url": "https://ziduri.in/products/ephemera/",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "Ziduri", "url": "https://ziduri.in/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Ephemera", "item": "https://ziduri.in/products/ephemera/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need an account to use Ephemera?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Create or join a room with just a room code — there is no sign-in, no email, and no password." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Ephemera messages end-to-end encrypted?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Messages travel over a standard secure WebSocket connection to the server, which relays them to the room, but they are not end-to-end encrypted. Treat Ephemera as private-by-default, not as a secure-messaging tool." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Ephemera save my messages?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Messages and images are relayed live between participants and are not written to any database or persistent storage. Once a room expires, there is nothing left to recover." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I lose my room code?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There is no recovery. Ask another participant still in the room for the code, or create a new room. This is by design — recoverable rooms would require persistent storage or accounts, which Ephemera deliberately avoids." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does it say the app is at capacity?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ephemera currently allows a maximum of 3 active rooms system-wide, since it's an early-stage MVP. Wait for a room to expire (rooms clean up a few minutes after everyone leaves) and try again." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Ephemera</span>
+  </nav>
+
+  <section class="section--tight container">
+    <div style="display:flex; gap: var(--z-space-4); align-items:center; margin-bottom: var(--z-space-4);">
+      <img src="/assets/products/ephemera/icon.png" alt="" width="56" height="56" style="border-radius: var(--z-radius-md); border:1px solid var(--z-border);">
+      <div>
+        <span class="badge badge--success">Available now</span>
+        <span class="badge badge--warning">Early-stage MVP</span>
+      </div>
+    </div>
+    <h1 class="section-title" style="font-size: var(--z-fs-3xl); max-width: 720px;">Ephemera: a room, a code, and a conversation that leaves nothing behind</h1>
+    <p class="section-lede" style="max-width: 640px; font-size: var(--z-fs-lg);">Create a short-lived room, share the code, and exchange text and images with someone in real time — no account, no message history, nothing saved once the room is gone.</p>
+    <div class="hero__actions" style="margin-top: var(--z-space-5);">
+      <a class="btn btn-primary" href="https://ephemera.indiana.workers.dev/" data-track="product_cta_click" data-track-label="ephemera-open" rel="noopener">Open Ephemera</a>
+      <a class="btn btn-secondary" href="#how">How it works</a>
+    </div>
+    <p class="text-tertiary" style="font-size: var(--z-fs-xs); margin-top: var(--z-space-3);">Ephemera is an early-stage MVP: it's capped at 3 active rooms system-wide and isn't end-to-end encrypted. See the FAQ below before relying on it for anything sensitive.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="illustration">
+      <img src="/assets/products/ephemera/concept-illustration.svg" alt="Illustration of the Ephemera start screen with a room-code join field and a Create Room button" width="640" height="400" loading="lazy">
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="problem-heading">
+    <div class="section-head">
+      <span class="eyebrow">Problem &amp; solution</span>
+      <h2 class="section-title" id="problem-heading">Sometimes you just need to send one thing, once</h2>
+      <p class="section-lede">Signing up for a messaging app, or emailing yourself a file, is a lot of ceremony for a single quick exchange. Ephemera skips all of it: open the page, create a room, share the code, and start talking. When you're done, close the tab — there's no account to delete because there was never one to begin with.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="features-heading">
+    <div class="section-head">
+      <span class="eyebrow">Features</span>
+      <h2 class="section-title" id="features-heading">What Ephemera does</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Instant rooms</h3>
+        <p class="feature-item__desc">Create a room and get a short code immediately — no form, no account.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Join by code or link</h3>
+        <p class="feature-item__desc">Share the room code, or a direct <code>/r/&lt;room-id&gt;</code> link that auto-joins.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Real-time text and images</h3>
+        <p class="feature-item__desc">Messages and images up to 2 MB deliver instantly over a live WebSocket connection.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Image preview &amp; download</h3>
+        <p class="feature-item__desc">Click a shared image to open a full-view preview, then copy or download it.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Nothing persisted</h3>
+        <p class="feature-item__desc">No database, no message history — content exists only for the life of the room.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Self-cleaning rooms</h3>
+        <p class="feature-item__desc">A room clears out roughly 2 minutes after the last participant leaves.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="usecases-heading">
+    <div class="section-head">
+      <span class="eyebrow">Use cases</span>
+      <h2 class="section-title" id="usecases-heading">Who Ephemera is for</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Quick cross-device handoff</h3>
+        <p class="feature-item__desc">Send yourself a link, snippet, or screenshot from your phone to your laptop without an app.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">A throwaway chat with someone new</h3>
+        <p class="feature-item__desc">Talk to someone without exchanging phone numbers or usernames — share a code, then it's gone.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">One-off image sharing</h3>
+        <p class="feature-item__desc">Send a photo or screenshot to someone nearby in real time, with nothing left behind afterward.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" id="how" aria-labelledby="how-heading">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-title" id="how-heading">From open tab to conversation</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3 class="step__title">Create a room</h3>
+        <p class="step__desc">Open Ephemera and click Create Room to get a short room code.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Share the code</h3>
+        <p class="step__desc">Send the code or the room link to whoever you want to talk to.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Talk in real time</h3>
+        <p class="step__desc">Exchange text and images instantly — everyone in the room sees them live.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">It disappears</h3>
+        <p class="step__desc">Close the tab. The room cleans up on its own a couple of minutes after everyone leaves.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="permissions-heading">
+    <div class="section-head">
+      <span class="eyebrow">Data &amp; access</span>
+      <h2 class="section-title" id="permissions-heading">What Ephemera accesses, and why</h2>
+      <p class="section-lede">As a web app, Ephemera doesn't install anything on your device. See the <a href="/privacy/ephemera/">privacy policy</a> for the full picture.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="perm-table">
+        <thead><tr><th>Capability</th><th>Why it's used</th></tr></thead>
+        <tbody>
+          <tr><td>WebSocket connection</td><td>Delivers text and image messages between everyone currently in your room, in real time.</td></tr>
+          <tr><td>Clipboard (optional)</td><td>Only used if you click "copy" on a shared image — never accessed automatically.</td></tr>
+          <tr><td>Room registry storage</td><td>Server-side only: tracks which room codes currently exist and whether the system is at its 3-room capacity. Never stores chat content.</td></tr>
+          <tr><td>Accounts / sign-in</td><td>Not used. There is no login anywhere in Ephemera.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="faq-heading">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title" id="faq-heading">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Do I need an account to use Ephemera?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. Create or join a room with just a room code — there is no sign-in, no email, and no password.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Are Ephemera messages end-to-end encrypted?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. Messages travel over a standard secure WebSocket connection to the server, which relays them to the room, but they are not end-to-end encrypted. Treat Ephemera as private-by-default, not as a secure-messaging tool.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does Ephemera save my messages?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. Messages and images are relayed live between participants and are not written to any database or persistent storage. Once a room expires, there is nothing left to recover.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens if I lose my room code?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">There is no recovery. Ask another participant still in the room for the code, or create a new room. This is by design — recoverable rooms would require persistent storage or accounts, which Ephemera deliberately avoids.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Why does it say the app is at capacity?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Ephemera currently allows a maximum of 3 active rooms system-wide, since it's an early-stage MVP. Wait for a room to expire (rooms clean up a few minutes after everyone leaves) and try again.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">More resources</h2>
+        <p class="text-secondary">Documentation, release notes and privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/ephemera/docs/" data-track="documentation_open">Documentation</a>
+        <a class="btn btn-secondary" href="/products/ephemera/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/ephemera/" data-track="privacy_open">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="related-heading">
+    <div class="section-head">
+      <span class="eyebrow">Related</span>
+      <h2 class="section-title" id="related-heading">More from Ziduri</h2>
+    </div>
+    <div class="product-grid">
+      <a class="card product-card" href="/products/browser-native-notes/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/browser-native-notes/icon-128.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Browser Extension</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Float Note</h3>
+          <p class="product-card__desc">A translucent floating note editor that saves notes per page, right in your browser.</p>
+        </div>
+      </a>
+      <a class="card product-card" href="/products/liteview/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/liteview/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Desktop Application</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">LiteView</h3>
+          <p class="product-card__desc">A ~2 MB image viewer for Windows, Linux and macOS that opens SVG, WebP and AVIF natively.</p>
+        </div>
+      </a>
+      <a class="card product-card" href="/products/anon-postal/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/anon-postal/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Web App</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Anon Postal</h3>
+          <p class="product-card__desc">Publish a public post with no account, or sign in for a private workspace with a custom expiry.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

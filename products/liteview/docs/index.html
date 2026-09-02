@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LiteView Documentation — Ziduri</title>
+<meta name="description" content="How LiteView opens SVG, WebP and AVIF, keyboard shortcuts, installation per platform, and troubleshooting.">
+<link rel="canonical" href="https://ziduri.in/products/liteview/docs/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="LiteView Documentation">
+<meta property="og:description" content="How LiteView works, installation per platform, and troubleshooting.">
+<meta property="og:url" content="https://ziduri.in/products/liteview/docs/">
+<meta property="og:image" content="https://ziduri.in/assets/products/liteview/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LiteView Documentation">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/liteview/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "LiteView", "item": "https://ziduri.in/products/liteview/"},
+    {"@type": "ListItem", "position": 4, "name": "Documentation", "item": "https://ziduri.in/products/liteview/docs/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/liteview/">LiteView</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Documentation</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Documentation</span>
+    <h1 class="section-title">LiteView documentation</h1>
+    <p class="section-lede">How LiteView decodes images, its keyboard shortcuts, install steps per platform, and fixes for common issues.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <h2>How image decoding works</h2>
+      <p>LiteView is built on <a href="https://neutralino.js.org" rel="noopener">Neutralinojs</a>: a small native window hosts the operating system's own web rendering engine — WebView2 on Windows, WebKitGTK on Linux, WKWebView on macOS — and that engine decodes every image. Because SVG, WebP and AVIF are all formats modern browsers already understand, LiteView gets native support for them for free, with no bundled codecs and no separate Electron/Chromium runtime to ship.</p>
+
+      <h2>Supported formats</h2>
+      <p>SVG, WebP, AVIF, PNG, JPEG, GIF, BMP and ICO.</p>
+
+      <h2>Keyboard shortcuts</h2>
+      <div class="table-scroll">
+        <table class="perm-table">
+          <thead><tr><th>Key</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><code>← / → / Space</code></td><td>Previous / next image</td></tr>
+            <tr><td><code>Home / End</code></td><td>First / last image</td></tr>
+            <tr><td>Mouse wheel</td><td>Zoom at cursor</td></tr>
+            <tr><td>Drag</td><td>Pan</td></tr>
+            <tr><td>Double-click</td><td>Toggle fit / 100%</td></tr>
+            <tr><td><code>+ / -</code></td><td>Zoom in / out</td></tr>
+            <tr><td><code>0 / 1</code></td><td>Fit to window / actual size</td></tr>
+            <tr><td><code>R</code></td><td>Rotate 90°</td></tr>
+            <tr><td><code>G</code></td><td>Grid view</td></tr>
+            <tr><td><code>F</code></td><td>Fullscreen</td></tr>
+            <tr><td><code>Ctrl+O / Ctrl+Shift+O</code></td><td>Open folder / open file</td></tr>
+            <tr><td><code>Esc</code></td><td>Leave fullscreen / grid</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Installation</h2>
+      <h3>Windows 10 / 11</h3>
+      <p>Download and unzip the Windows release, then run <code>install.ps1</code> (<code>powershell -ExecutionPolicy Bypass -File install.ps1</code>). This installs per-user to <code>%LOCALAPPDATA%\Programs\LiteView</code> with no admin rights, adds a Start Menu shortcut, and registers LiteView under "Open with" and Settings → Default apps. Windows requires you to manually confirm the default app per file type: right-click a file → Open with → Choose another app → LiteView → Always. Uninstall with <code>uninstall.ps1</code>.</p>
+      <h3>Linux</h3>
+      <p>Install the WebKitGTK dependency (<code>libwebkit2gtk-4.1-0</code> on Debian/Ubuntu, <code>webkit2gtk4.1</code> on Fedora, <code>webkit2gtk-4.1</code> on Arch), then run <code>packaging/install-linux.sh</code>. This installs per-user, registers a desktop entry, and sets LiteView as the default viewer for AVIF, WebP and SVG automatically. Uninstall with <code>packaging/uninstall-linux.sh</code>.</p>
+      <h3>macOS 13+</h3>
+      <p>Run <code>packaging/build-macos-app.sh</code> to assemble a universal <code>LiteView.app</code> (Intel + Apple Silicon), then drag it into Applications. The bundle is unsigned, so the first launch needs right-click → Open.</p>
+
+      <h2>Command line usage</h2>
+      <p>Run <code>liteview &lt;image-or-folder&gt;</code> to open a specific file or folder directly. Opening a single image loads its entire parent folder into the filmstrip so you can navigate between neighboring files.</p>
+
+      <h2>Troubleshooting</h2>
+      <h3>LiteView isn't offered as an option when I right-click a file</h3>
+      <p>Reinstall via <code>install.ps1</code> (Windows) or <code>packaging/install-linux.sh</code> (Linux) to re-register file associations, then try Open with again.</p>
+      <h3>macOS won't launch the app</h3>
+      <p>The app bundle is unsigned. Right-click <code>LiteView.app</code> → Open (instead of double-clicking) the first time to bypass Gatekeeper's warning.</p>
+      <h3>A format doesn't seem to decode</h3>
+      <p>Rendering depends on the OS's web engine version — very old Linux distributions may ship a WebKitGTK build without AVIF support (AVIF needs WebKitGTK ≥ 2.32). Updating your system's WebKitGTK package resolves this.</p>
+
+      <h2>Source &amp; license</h2>
+      <p>LiteView is MIT-licensed and open source. Full source, issues and releases are on <a href="https://github.com/tungnath/liteview" rel="noopener">GitHub</a>.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">Related</h2>
+        <p class="text-secondary">Back to the product page, release notes, or privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/liteview/">Product overview</a>
+        <a class="btn btn-secondary" href="/products/liteview/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/liteview/">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

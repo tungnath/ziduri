@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="ephTitle">
+  <title id="ephTitle">Illustration of the Ephemera start screen: a room-code join field and a Create Room button</title>
+  <defs>
+    <linearGradient id="ephBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f1ee"/>
+      <stop offset="100%" stop-color="#eee2d8"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="16" y="16" width="608" height="368" rx="14" fill="url(#ephBg)" stroke="#ddd4d7"/>
+
+  <text x="56" y="150" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#311520">Ephemera</text>
+  <text x="56" y="120" font-family="Arial, sans-serif" font-size="12" letter-spacing="2" fill="#9b6c49">EPHEMERAL ROOMS</text>
+
+  <g transform="translate(360,150)">
+    <rect width="220" height="140" rx="14" fill="#ffffff" stroke="#ddd4d7"/>
+    <rect x="16" y="16" width="188" height="34" rx="8" fill="#4a1c2b"/>
+    <text x="110" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Create Room</text>
+    <text x="16" y="76" font-family="Arial, sans-serif" font-size="11" fill="#766873">Room code</text>
+    <rect x="16" y="84" width="120" height="32" rx="8" fill="#f5f1ee" stroke="#ddd4d7"/>
+    <text x="26" y="105" font-family="Arial, sans-serif" font-size="12" fill="#9a8f93">abc123</text>
+    <rect x="146" y="84" width="58" height="32" rx="8" fill="#c9a27e"/>
+    <text x="175" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#32121d">Join</text>
+  </g>
+</svg>

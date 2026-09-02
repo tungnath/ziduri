@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ephemera Privacy Policy — Ziduri</title>
+<meta name="description" content="Ephemera's privacy policy: no accounts, no persisted messages, and what room metadata the server briefly tracks.">
+<link rel="canonical" href="https://ziduri.in/privacy/ephemera/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Ephemera Privacy Policy">
+<meta property="og:description" content="No accounts, no persisted messages — what Ephemera actually stores.">
+<meta property="og:url" content="https://ziduri.in/privacy/ephemera/">
+<meta property="og:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ephemera Privacy Policy">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://ziduri.in/privacy/"},
+    {"@type": "ListItem", "position": 3, "name": "Ephemera", "item": "https://ziduri.in/privacy/ephemera/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/privacy/">Privacy</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Ephemera</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Privacy Policy</span>
+    <h1 class="section-title">Ephemera Privacy Policy</h1>
+    <p class="text-tertiary" style="font-size: var(--z-fs-sm);">Effective date: August 2026 · Version 1.0 · Applies to the Ephemera web app</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <div class="callout callout--warning" style="margin-bottom: var(--z-space-6);">
+        Ephemera does not persist your messages or images, and has no accounts — but it is also not end-to-end encrypted. Read "Security model" below before using it for anything sensitive.
+      </div>
+
+      <h2>Overview</h2>
+      <p>Ephemera ("the Application") is a minimal, no-signup messaging web app built on Cloudflare Workers and Durable Objects. This policy explains exactly what data the Application handles, where it lives, and what happens to it.</p>
+
+      <h2>What data is processed</h2>
+      <p>Ephemera processes only what's needed to relay a live conversation:</p>
+      <ul>
+        <li><strong>Messages and images</strong> you send in a room, relayed in real time to the other people currently in that room.</li>
+        <li><strong>Room codes</strong> — short identifiers used to let people join the same room.</li>
+      </ul>
+      <p>Ephemera does not ask for or collect your name, email, or any account information — there is no account system.</p>
+
+      <h2>What is never stored</h2>
+      <p>Messages and images are relayed live between connected participants and are <strong>not written to any database or persistent storage</strong>. There is no message history to look back on, by design — once a room's participants disconnect and the room cleans up, there is nothing left to recover, for you or for anyone else.</p>
+
+      <h2>What is stored, briefly, and why</h2>
+      <p>A server-side registry tracks which room codes currently exist and whether the system is at its active-room limit, so it can enforce a maximum of 3 active rooms at once and clean up abandoned rooms. This registry holds room lifecycle metadata only — never chat content — and entries expire automatically (roughly 10 minutes for inactive/unclaimed rooms, roughly 2 minutes after a room empties out).</p>
+
+      <h2>Security model</h2>
+      <p>Messages travel over a secure WebSocket connection to Ephemera's server, which relays them to everyone in the room. This connection is encrypted in transit, but <strong>messages are not end-to-end encrypted</strong> — the server relays plaintext content rather than opaque encrypted blobs. There is also no authentication: anyone who has a room's code can join it. Treat Ephemera as private-by-default for casual use, not as a tool for sensitive or confidential communication.</p>
+
+      <h2>Third parties and analytics</h2>
+      <p>Ephemera does not use analytics, tracking, or advertising. It runs entirely on Cloudflare's infrastructure (Workers and Durable Objects) to serve the app and relay messages.</p>
+
+      <h2>Authentication and payments</h2>
+      <p>Ephemera has no accounts, sign-in, or payment functionality of any kind.</p>
+
+      <h2>Data retention and deletion</h2>
+      <p>There is nothing to delete on request, because message and image content is never persisted in the first place. Room metadata (the fact that a room code exists) clears itself automatically per the timings above — there is no manual deletion flow because none is needed.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>Ephemera is an early-stage MVP and may change. If a future version adds persistence, accounts, or end-to-end encryption, this policy will be updated first, and the version and effective date above will change accordingly.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy can be sent through the <a href="/contact/">contact page</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

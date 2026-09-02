@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Float Note Documentation — Ziduri</title>
+<meta name="description" content="How Float Note stores notes, how auto-save works, and how to install, use and troubleshoot the Float Note browser extension.">
+<link rel="canonical" href="https://ziduri.in/products/browser-native-notes/docs/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Float Note Documentation">
+<meta property="og:description" content="How Float Note stores notes, how auto-save works, and how to install and use it.">
+<meta property="og:url" content="https://ziduri.in/products/browser-native-notes/docs/">
+<meta property="og:image" content="https://ziduri.in/assets/products/browser-native-notes/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Float Note Documentation">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/browser-native-notes/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Float Note", "item": "https://ziduri.in/products/browser-native-notes/"},
+    {"@type": "ListItem", "position": 4, "name": "Documentation", "item": "https://ziduri.in/products/browser-native-notes/docs/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/browser-native-notes/">Float Note</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Documentation</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Documentation</span>
+    <h1 class="section-title">Float Note documentation</h1>
+    <p class="section-lede">A reference for how Float Note stores data, saves notes and behaves — useful if you're evaluating it, installing it, or curious how it works under the hood.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <h2>Storage model</h2>
+      <p>Each note is stored under a key combining the page URL and the timestamp it was created, for example:</p>
+      <p><code>https://example.com/page|1770000000000</code></p>
+      <p>Notes are written to <code>chrome.storage.local</code>, Chrome's built-in per-extension storage. Timestamps prevent key collisions when you create more than one note on the same page. Chrome allows up to 10MB of local storage per extension.</p>
+
+      <h2>Saving behavior</h2>
+      <ul>
+        <li><strong>Auto-save</strong> — changes are written automatically after about 2 seconds of inactivity.</li>
+        <li><strong>Manual save</strong> — the Save button in the editor writes immediately.</li>
+        <li>The editor shows a status indicator ("Unsaved changes…" or "Saved") so you always know the current state.</li>
+      </ul>
+
+      <h2>Per-tab and per-page behavior</h2>
+      <p>Each browser tab maintains its own editor state. Returning to a URL you've taken notes on — in the same tab or a new one — loads your most recent note for that page automatically once you open the editor.</p>
+
+      <h2>Managing notes</h2>
+      <p>Open the extension popup to see every note created for the current page. From there you can:</p>
+      <ul>
+        <li>Click a note to resume editing it</li>
+        <li>Delete an individual note</li>
+        <li>Clear all notes for the current page</li>
+      </ul>
+      <p>Old notes are not deleted automatically — deletion is always a manual action.</p>
+
+      <h2>Installation</h2>
+      <p>Float Note is published on the <a href="https://chromewebstore.google.com/detail/float-note/hdgchocbjkhhjanmnjfokmlijdlmbgpp" rel="noopener">Chrome Web Store</a>:</p>
+      <ol>
+        <li>Open the <a href="https://chromewebstore.google.com/detail/float-note/hdgchocbjkhhjanmnjfokmlijdlmbgpp" rel="noopener">Float Note listing</a> and click "Add to Chrome."</li>
+        <li>Pin the icon from the extensions menu (puzzle-piece icon) in your toolbar.</li>
+        <li>Click the icon on any page to open the editor and start writing.</li>
+      </ol>
+
+      <h2>Troubleshooting</h2>
+      <h3>The editor doesn't appear</h3>
+      <p>Refresh the page, confirm the extension is enabled at <code>chrome://extensions</code>, and try reloading the extension from that page.</p>
+      <h3>Notes aren't saving</h3>
+      <p>Check available storage space and look for errors in the page console (F12 → Console).</p>
+      <h3>The toolbar icon is missing</h3>
+      <p>Go to <code>chrome://extensions</code>, find Float Note, and click the pin icon to keep it visible in the toolbar.</p>
+
+      <h2>Browser compatibility</h2>
+      <p>Float Note targets Chromium-based browsers: Chrome 88+, Edge 88+, and other Chromium browsers such as Brave and Vivaldi.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">Related</h2>
+        <p class="text-secondary">Back to the product page, release notes, or privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/browser-native-notes/">Product overview</a>
+        <a class="btn btn-secondary" href="/products/browser-native-notes/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/browser-native-notes/">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

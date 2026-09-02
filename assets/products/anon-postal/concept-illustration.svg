@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="apTitle">
+  <title id="apTitle">Illustration of the Anon Postal create-a-post screen: a title field, a body field, expiry options, and a publish button</title>
+  <defs>
+    <linearGradient id="apWin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#161229"/>
+      <stop offset="100%" stop-color="#0e1220"/>
+    </linearGradient>
+    <linearGradient id="apPill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6E8FE6"/>
+      <stop offset="55%" stop-color="#A492E4"/>
+      <stop offset="100%" stop-color="#5FC9BF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="16" y="16" width="608" height="368" rx="18" fill="url(#apWin)" stroke="#2a2a44"/>
+
+  <text x="48" y="70" font-family="Georgia, 'Times New Roman', serif" font-size="26" fill="#ebeef8">New post</text>
+
+  <rect x="48" y="96" width="544" height="40" rx="10" fill="#1a1830" stroke="#2a2a44"/>
+  <text x="62" y="121" font-family="Arial, sans-serif" font-size="13" fill="#727a96">A quick note, poem, or reflection</text>
+
+  <rect x="48" y="150" width="544" height="120" rx="10" fill="#1a1830" stroke="#2a2a44"/>
+  <text x="62" y="175" font-family="Arial, sans-serif" font-size="13" fill="#727a96">Write something meaningful…</text>
+
+  <g font-family="Arial, sans-serif" font-size="12">
+    <text x="48" y="300" fill="#98a0bb">Fades in</text>
+    <rect x="112" y="284" width="52" height="24" rx="12" fill="#2a2a44"/>
+    <text x="138" y="300" text-anchor="middle" fill="#c3c9df">1h</text>
+    <rect x="170" y="284" width="52" height="24" rx="12" fill="url(#apPill)"/>
+    <text x="196" y="300" text-anchor="middle" fill="#12111f" font-weight="700">1d</text>
+    <rect x="228" y="284" width="60" height="24" rx="12" fill="#2a2a44"/>
+    <text x="258" y="300" text-anchor="middle" fill="#c3c9df">7d</text>
+    <rect x="294" y="284" width="66" height="24" rx="12" fill="#2a2a44"/>
+    <text x="327" y="300" text-anchor="middle" fill="#c3c9df">30d</text>
+  </g>
+
+  <rect x="440" y="330" width="152" height="38" rx="10" fill="url(#apPill)"/>
+  <text x="516" y="354" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#12111f">Publish post</text>
+</svg>

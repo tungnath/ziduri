@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anon Postal — Share anonymously. Save privately. | Ziduri</title>
+<meta name="description" content="Anon Postal is a web app for quick anonymous posts and a private workspace. Publish a public post with no account, or sign in with Google to save notes with a custom expiry window.">
+<link rel="canonical" href="https://ziduri.in/products/anon-postal/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Anon Postal — Share anonymously. Save privately.">
+<meta property="og:description" content="Publish a public post with no account, or sign in with Google for a private workspace with a custom expiry window.">
+<meta property="og:url" content="https://ziduri.in/products/anon-postal/">
+<meta property="og:image" content="https://ziduri.in/assets/products/anon-postal/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anon Postal — Share anonymously. Save privately.">
+<meta name="twitter:description" content="Quick anonymous posts, or a private workspace with a custom expiry window.">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/anon-postal/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Anon Postal",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (web browser)",
+  "description": "A web app for quick anonymous posts and a private workspace. Publish a public post with no account, or sign in with Google to save notes with a custom expiry window.",
+  "url": "https://ziduri.in/products/anon-postal/",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "Ziduri", "url": "https://ziduri.in/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Anon Postal", "item": "https://ziduri.in/products/anon-postal/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need an account to use Anon Postal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not for a public post — write one and publish it with no sign-in. An account (via Google) is only needed for private posts, choosing a custom expiry window, and editing or deleting a post later." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do anonymous posts last?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Always 24 hours. Anonymous posts are fixed to a 24-hour expiry regardless of any expiry option shown in the interface — only signed-in users can choose a different window." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can other people tell who wrote a public post?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The identity of a post's author is never exposed by the app to other viewers, even for signed-in users' public posts — the API only ever reveals whether a post belongs to the current viewer, never who anyone else's posts belong to." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when a post expires?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It stops appearing anywhere immediately, and is then permanently deleted from the database by a recurring cleanup job." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I delete an anonymous post before it expires?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. An anonymous post isn't tied to any account, so there is nothing to authenticate a deletion request against. It will expire automatically within 24 hours." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Anon Postal</span>
+  </nav>
+
+  <section class="section--tight container">
+    <div style="display:flex; gap: var(--z-space-4); align-items:center; margin-bottom: var(--z-space-4);">
+      <img src="/assets/products/anon-postal/icon.png" alt="" width="56" height="56" style="border-radius: var(--z-radius-md); border:1px solid var(--z-border);">
+      <span class="badge badge--success">Available now</span>
+    </div>
+    <h1 class="section-title" style="font-size: var(--z-fs-3xl); max-width: 720px;">Anon Postal: share anonymously, save privately, expire automatically</h1>
+    <p class="section-lede" style="max-width: 640px; font-size: var(--z-fs-lg);">A lightweight home for quick notes, public stories, and private workspace posts. Publish a public post in seconds with no account, or sign in with Google to keep notes in a personal dashboard with a custom expiry window.</p>
+    <div class="hero__actions" style="margin-top: var(--z-space-5);">
+      <a class="btn btn-primary" href="https://anon-postal.vercel.app/" data-track="product_cta_click" data-track-label="anon-postal-open" rel="noopener">Open Anon Postal</a>
+      <a class="btn btn-secondary" href="#how">How it works</a>
+    </div>
+    <p class="text-tertiary" style="font-size: var(--z-fs-xs); margin-top: var(--z-space-3);">Anonymous posts always expire after 24 hours. See the FAQ below for exactly what's public, private, and permanent.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="illustration">
+      <img src="/assets/products/anon-postal/concept-illustration.svg" alt="Illustration of the Anon Postal create-a-post screen with a title field, a body field, expiry options and a publish button" width="640" height="400" loading="lazy">
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="problem-heading">
+    <div class="section-head">
+      <span class="eyebrow">Problem &amp; solution</span>
+      <h2 class="section-title" id="problem-heading">A quick note shouldn't require an account</h2>
+      <p class="section-lede">Most places to jot down a thought and share it either demand a sign-up first or keep it forever whether you want that or not. Anon Postal separates the two concerns cleanly: publish anonymously and instantly for anything short-lived, or sign in only when you actually want a private, organized, longer-lived workspace.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="features-heading">
+    <div class="section-head">
+      <span class="eyebrow">Features</span>
+      <h2 class="section-title" id="features-heading">What Anon Postal does</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Anonymous publishing</h3>
+        <p class="feature-item__desc">Write a post and publish it publicly with no account — it gets a short-lived link and expires automatically after 24 hours.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Private workspace</h3>
+        <p class="feature-item__desc">Sign in with Google to keep posts — public or private — in a personal dashboard with editing and deletion.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Real expiry, not just a label</h3>
+        <p class="feature-item__desc">Signed-in users choose 1 hour, 1 day, 7 days, 30 days, or never; the choice becomes a fixed timestamp the app actually enforces.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Author identity stays hidden</h3>
+        <p class="feature-item__desc">Public posts never reveal who wrote them — not even to other signed-in users — only whether a post is yours.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Expired means gone</h3>
+        <p class="feature-item__desc">Expired posts disappear from listings immediately, and are permanently deleted from the database by a recurring cleanup job.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Light and dark themes</h3>
+        <p class="feature-item__desc">The interface follows your system theme, with a manual toggle available.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="usecases-heading">
+    <div class="section-head">
+      <span class="eyebrow">Use cases</span>
+      <h2 class="section-title" id="usecases-heading">Who Anon Postal is for</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">A quick public note</h3>
+        <p class="feature-item__desc">Share a short story, thought, or announcement without creating an account, knowing it'll expire on its own.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">A personal scratchpad</h3>
+        <p class="feature-item__desc">Sign in to keep private drafts and notes organized in one dashboard, with full control to edit or delete them.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Time-boxed sharing</h3>
+        <p class="feature-item__desc">Publish something you only want visible for a set window — an hour, a week, a month — without remembering to take it down.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" id="how" aria-labelledby="how-heading">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-title" id="how-heading">From blank page to published post</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3 class="step__title">Write</h3>
+        <p class="step__desc">Open "Create a post," add a title and your words.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Choose visibility</h3>
+        <p class="step__desc">Publish anonymously and publicly, or sign in with Google to also pick private and set a custom expiry.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">Publish</h3>
+        <p class="step__desc">Your post is live immediately at its own link.</p>
+      </div>
+      <div class="step">
+        <h3 class="step__title">It fades on schedule</h3>
+        <p class="step__desc">At the expiry timestamp, the post disappears and is later purged from the database for good.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="permissions-heading">
+    <div class="section-head">
+      <span class="eyebrow">Data &amp; access</span>
+      <h2 class="section-title" id="permissions-heading">What Anon Postal accesses, and why</h2>
+      <p class="section-lede">See the <a href="/privacy/anon-postal/">privacy policy</a> for the full picture, including exactly what's stored when you sign in.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="perm-table">
+        <thead><tr><th>Capability</th><th>Why it's used</th></tr></thead>
+        <tbody>
+          <tr><td>Google sign-in (optional)</td><td>Authenticates you for the private workspace, using your Google account's basic profile (name, email, profile photo).</td></tr>
+          <tr><td>Database storage</td><td>Post titles, content, expiry timestamps, and public/private status are stored so posts can be served, listed, and expired correctly.</td></tr>
+          <tr><td>Scheduled cleanup</td><td>A recurring server job permanently deletes posts once their expiry timestamp has passed.</td></tr>
+          <tr><td>Anonymous posting</td><td>Requires no data from you beyond the post itself — no account, cookie identity, or profile is created.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="faq-heading">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title" id="faq-heading">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Do I need an account to use Anon Postal?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Not for a public post — write one and publish it with no sign-in. An account (via Google) is only needed for private posts, choosing a custom expiry window, and editing or deleting a post later.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long do anonymous posts last?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Always 24 hours. Anonymous posts are fixed to a 24-hour expiry regardless of any expiry option shown in the interface — only signed-in users can choose a different window.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can other people tell who wrote a public post?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. The identity of a post's author is never exposed by the app to other viewers, even for signed-in users' public posts — the app only ever reveals whether a post belongs to the current viewer, never who anyone else's posts belong to.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens when a post expires?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">It stops appearing anywhere immediately, and is then permanently deleted from the database by a recurring cleanup job.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I delete an anonymous post before it expires?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. An anonymous post isn't tied to any account, so there is nothing to authenticate a deletion request against. It will expire automatically within 24 hours.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">More resources</h2>
+        <p class="text-secondary">Documentation, release notes and privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/anon-postal/docs/" data-track="documentation_open">Documentation</a>
+        <a class="btn btn-secondary" href="/products/anon-postal/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/anon-postal/" data-track="privacy_open">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="related-heading">
+    <div class="section-head">
+      <span class="eyebrow">Related</span>
+      <h2 class="section-title" id="related-heading">More from Ziduri</h2>
+    </div>
+    <div class="product-grid">
+      <a class="card product-card" href="/products/ephemera/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/ephemera/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Web App</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Ephemera</h3>
+          <p class="product-card__desc">Create a short-lived room and exchange text and images in real time. No accounts, no history.</p>
+        </div>
+      </a>
+      <a class="card product-card" href="/products/browser-native-notes/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/browser-native-notes/icon-128.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Browser Extension</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Float Note</h3>
+          <p class="product-card__desc">A translucent floating note editor that saves notes per page, right in your browser.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

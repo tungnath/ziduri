@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LiteView — The tiny desktop viewer for SVG, WebP and AVIF | Ziduri</title>
+<meta name="description" content="LiteView is a ~2 MB desktop image viewer for Windows, Linux and macOS that opens SVG, WebP and AVIF natively — formats the stock viewer can't — plus PNG, JPEG, GIF, BMP and ICO, with thumbnails.">
+<link rel="canonical" href="https://ziduri.in/products/liteview/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="LiteView — The tiny desktop viewer for SVG, WebP and AVIF">
+<meta property="og:description" content="A ~2 MB image viewer for Windows, Linux and macOS. Opens SVG, WebP and AVIF natively, with thumbnails — no codec packs, no bloat.">
+<meta property="og:url" content="https://ziduri.in/products/liteview/">
+<meta property="og:image" content="https://ziduri.in/assets/products/liteview/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LiteView — The tiny desktop viewer for SVG, WebP and AVIF">
+<meta name="twitter:description" content="A ~2 MB image viewer that opens SVG, WebP and AVIF natively, with thumbnails.">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/liteview/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LiteView",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Windows, Linux, macOS",
+  "description": "A ~2 MB desktop image viewer with native support for SVG, WebP and AVIF, plus PNG, JPEG, GIF, BMP and ICO, with thumbnails.",
+  "url": "https://ziduri.in/products/liteview/",
+  "softwareVersion": "1.0.0",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "Ziduri", "url": "https://ziduri.in/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "LiteView", "item": "https://ziduri.in/products/liteview/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why can't Windows open my AVIF or WebP file?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Windows' stock Photos app doesn't include decoders for AVIF, WebP or SVG out of the box. LiteView opens all three directly, using the OS's built-in web rendering engine to decode them instead of requiring separate codec packs." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does LiteView send any of my images or data anywhere?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. LiteView has no network permissions and makes no network requests. Every file you view is read from disk and decoded locally." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does LiteView set itself as my default viewer automatically?",
+      "acceptedAnswer": { "@type": "Answer", "text": "On Linux, the installer sets LiteView as the default for AVIF, WebP and SVG automatically. On Windows, Windows itself blocks programs from silently changing your default app — you set it manually via Open with > Choose another app > LiteView > Always." }
+    },
+    {
+      "@type": "Question",
+      "name": "How large is LiteView?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Around 2 MB in total — two files on Windows (the executable and a packed resources file) versus the roughly 200 MB a typical Electron-based viewer bundles." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is LiteView free and open source?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. LiteView is released under the MIT license and the full source is available on GitHub." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">LiteView</span>
+  </nav>
+
+  <section class="section--tight container">
+    <div style="display:flex; gap: var(--z-space-4); align-items:center; margin-bottom: var(--z-space-4);">
+      <img src="/assets/products/liteview/icon.png" alt="" width="56" height="56" style="border-radius: var(--z-radius-md); border:1px solid var(--z-border);">
+      <div>
+        <span class="badge badge--success">Available now · v1.0.0</span>
+      </div>
+    </div>
+    <h1 class="section-title" style="font-size: var(--z-fs-3xl); max-width: 720px;">LiteView: the tiny desktop viewer for formats Windows won't open</h1>
+    <p class="section-lede" style="max-width: 640px; font-size: var(--z-fs-lg);">A ~2 MB image viewer for Windows, Linux and macOS with first-class support for SVG, WebP and AVIF — plus PNG, JPEG, GIF, BMP and ICO — with thumbnails included. No codec packs, no 200 MB Electron bundle.</p>
+    <div class="hero__actions" style="margin-top: var(--z-space-5);">
+      <a class="btn btn-primary" href="https://github.com/tungnath/liteview/releases/latest" data-track="store_click" data-track-label="liteview-download" rel="noopener">Download latest release</a>
+      <a class="btn btn-secondary" href="#installation">Installation instructions</a>
+    </div>
+    <p class="text-tertiary" style="font-size: var(--z-fs-xs); margin-top: var(--z-space-3);">Free and open source under the MIT license. Source code on <a href="https://github.com/tungnath/liteview" rel="noopener">GitHub</a>.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="illustration">
+      <img src="/assets/products/liteview/concept-illustration.svg" alt="Illustration of the LiteView window: a toolbar, an image viewport showing the app icon, a filmstrip of thumbnails, and a status bar" width="640" height="400" loading="lazy">
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="problem-heading">
+    <div class="section-head">
+      <span class="eyebrow">Problem &amp; solution</span>
+      <h2 class="section-title" id="problem-heading">The stock viewer can't open modern formats</h2>
+      <p class="section-lede">Windows' built-in Photos app still can't open AVIF, WebP or SVG without extra codec packs — and won't thumbnail them either. LiteView opens all three natively, using the operating system's own web rendering engine (WebView2 on Windows, WebKitGTK on Linux, WKWebView on macOS) to decode them, so there's nothing extra to install beyond the app itself.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="features-heading">
+    <div class="section-head">
+      <span class="eyebrow">Features</span>
+      <h2 class="section-title" id="features-heading">What LiteView does</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Modern formats, natively</h3>
+        <p class="feature-item__desc">SVG, WebP and AVIF decode through the OS's own webview engine — no codec packs required.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Actually lightweight</h3>
+        <p class="feature-item__desc">The whole app is about 2 MB. It cold-starts almost instantly and runs no background services.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Thumbnails everywhere</h3>
+        <p class="feature-item__desc">A filmstrip and a full grid view, lazy-loaded and prioritized for what's currently on screen.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">A real viewer</h3>
+        <p class="feature-item__desc">Zoom at the cursor, pan, rotate, fit-to-window or 1:1, fullscreen, and a pixelated mode for inspecting pixel art past 300% zoom.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Keyboard-first</h3>
+        <p class="feature-item__desc">Arrow keys to move between images, G for grid, F for fullscreen, 0/1 for fit/actual size — everything reachable without the mouse.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Cross-platform</h3>
+        <p class="feature-item__desc">One codebase ships to Windows, Linux and macOS, packaged natively for each.</p>
+      </div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap: var(--z-space-2); margin-top: var(--z-space-6);">
+      <span class="badge badge--info">SVG</span>
+      <span class="badge badge--info">WebP</span>
+      <span class="badge badge--info">AVIF</span>
+      <span class="badge badge--neutral">PNG</span>
+      <span class="badge badge--neutral">JPEG</span>
+      <span class="badge badge--neutral">GIF</span>
+      <span class="badge badge--neutral">BMP</span>
+      <span class="badge badge--neutral">ICO</span>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="usecases-heading">
+    <div class="section-head">
+      <span class="eyebrow">Use cases</span>
+      <h2 class="section-title" id="usecases-heading">Who LiteView is for</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Designers &amp; developers</h3>
+        <p class="feature-item__desc">Quickly preview SVG assets and exported icons without opening a design tool or browser tab.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Photographers</h3>
+        <p class="feature-item__desc">Browse folders of modern AVIF/WebP exports with fast thumbnails and smooth zoom on large photos.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Anyone downloading modern web images</h3>
+        <p class="feature-item__desc">Open AVIF and WebP files saved from the web the moment double-clicking them stops working in Windows.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="how-heading">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-title" id="how-heading">Usage</h2>
+      <p class="section-lede">Launch LiteView from the app menu, or run <code>liteview &lt;image-or-folder&gt;</code> — opening one image loads its whole folder into the filmstrip.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="perm-table">
+        <thead><tr><th>Key</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><code>← / → / Space</code></td><td>Previous / next image</td></tr>
+          <tr><td><code>Home / End</code></td><td>First / last image</td></tr>
+          <tr><td>Mouse wheel</td><td>Zoom at cursor</td></tr>
+          <tr><td>Drag</td><td>Pan</td></tr>
+          <tr><td>Double-click</td><td>Toggle fit / 100%</td></tr>
+          <tr><td><code>+ / -</code></td><td>Zoom in / out</td></tr>
+          <tr><td><code>0 / 1</code></td><td>Fit to window / actual size</td></tr>
+          <tr><td><code>R</code></td><td>Rotate 90°</td></tr>
+          <tr><td><code>G</code></td><td>Grid view</td></tr>
+          <tr><td><code>F</code></td><td>Fullscreen</td></tr>
+          <tr><td><code>Ctrl+O / Ctrl+Shift+O</code></td><td>Open folder / open file</td></tr>
+          <tr><td><code>Esc</code></td><td>Leave fullscreen / grid</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section--tight container" id="installation" aria-labelledby="install-heading">
+    <div class="section-head">
+      <span class="eyebrow">Installation</span>
+      <h2 class="section-title" id="install-heading">Install LiteView</h2>
+      <p class="section-lede">Download the package for your OS from the <a href="https://github.com/tungnath/liteview/releases/latest" rel="noopener">latest release</a>, then follow the steps below.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3 class="feature-item__title">Windows 10 / 11</h3>
+        <p class="feature-item__desc">Unzip the download, then run:</p>
+        <p><code>powershell -ExecutionPolicy Bypass -File install.ps1</code></p>
+        <p class="feature-item__desc">Installs per-user to <code>%LOCALAPPDATA%\Programs\LiteView</code> — no admin rights needed — adds a Start Menu shortcut, and registers LiteView under "Open with" and Settings → Default apps. To make it the default for a format, right-click a file → Open with → Choose another app → LiteView → Always (Windows requires this last step to be manual). Uninstall with <code>uninstall.ps1</code>.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">Linux</h3>
+        <p class="feature-item__desc">Install the WebKitGTK dependency, then run the installer:</p>
+        <p><code>sudo apt install libwebkit2gtk-4.1-0</code><br><code>bash packaging/install-linux.sh</code></p>
+        <p class="feature-item__desc">Per-user install, no root needed for the app itself. Registers a desktop entry and sets LiteView as the default viewer for AVIF, WebP and SVG automatically. Uninstall with <code>packaging/uninstall-linux.sh</code>.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="feature-item__title">macOS 13+</h3>
+        <p class="feature-item__desc">Build the app bundle from the downloaded package:</p>
+        <p><code>bash packaging/build-macos-app.sh</code></p>
+        <p class="feature-item__desc">Produces a universal <code>LiteView.app</code> (Intel + Apple Silicon) — drag it into Applications. The bundle is unsigned, so the first launch needs right-click → Open.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="permissions-heading">
+    <div class="section-head">
+      <span class="eyebrow">Permissions</span>
+      <h2 class="section-title" id="permissions-heading">What LiteView accesses, and why</h2>
+      <p class="section-lede">As a desktop app, LiteView doesn't request browser-style permissions — it accesses your system directly, but only for what it needs. See the <a href="/privacy/liteview/">privacy policy</a> for the full picture.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="perm-table">
+        <thead><tr><th>Capability</th><th>Why it's needed</th></tr></thead>
+        <tbody>
+          <tr><td>Filesystem</td><td>Reads the image files and folders you explicitly open. LiteView never scans your disk beyond the folder you point it at.</td></tr>
+          <tr><td>Local storage</td><td>Remembers the last folder you opened, saved next to the app, so it can offer to reopen it on next launch.</td></tr>
+          <tr><td>OS dialogs &amp; shell</td><td>Native "Open file/folder" dialogs, and an optional "Show in Explorer/Finder" action.</td></tr>
+          <tr><td>Window &amp; display</td><td>Fullscreen toggling and window sizing.</td></tr>
+          <tr><td>Network</td><td>None. LiteView has no network capability and makes no network requests.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="faq-heading">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title" id="faq-heading">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Why can't Windows open my AVIF or WebP file?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Windows' stock Photos app doesn't include decoders for AVIF, WebP or SVG out of the box. LiteView opens all three directly, using the OS's built-in web rendering engine to decode them instead of requiring separate codec packs.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does LiteView send any of my images or data anywhere?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">No. LiteView has no network permissions and makes no network requests. Every file you view is read from disk and decoded locally.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does LiteView set itself as my default viewer automatically?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">On Linux, the installer sets LiteView as the default for AVIF, WebP and SVG automatically. On Windows, Windows itself blocks programs from silently changing your default app — you set it manually via Open with → Choose another app → LiteView → Always.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How large is LiteView?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Around 2 MB in total — two files on Windows (the executable and a packed resources file) versus the roughly 200 MB a typical Electron-based viewer bundles.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is LiteView free and open source?
+          <svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="faq-item__body">Yes. LiteView is released under the MIT license and the full source is available on GitHub.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">More resources</h2>
+        <p class="text-secondary">Documentation, release notes, privacy details and the source code.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/liteview/docs/" data-track="documentation_open">Documentation</a>
+        <a class="btn btn-secondary" href="/products/liteview/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/liteview/" data-track="privacy_open">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="related-heading">
+    <div class="section-head">
+      <span class="eyebrow">Related</span>
+      <h2 class="section-title" id="related-heading">More from Ziduri</h2>
+    </div>
+    <div class="product-grid">
+      <a class="card product-card" href="/products/browser-native-notes/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/browser-native-notes/icon-128.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Browser Extension</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Float Note</h3>
+          <p class="product-card__desc">A translucent floating note editor that saves notes per page, right in your browser.</p>
+        </div>
+      </a>
+      <a class="card product-card" href="/products/ephemera/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/ephemera/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Web App</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Ephemera</h3>
+          <p class="product-card__desc">Create a short-lived room and exchange text and images in real time. No accounts, no history.</p>
+        </div>
+      </a>
+      <a class="card product-card" href="/products/anon-postal/">
+        <div class="product-card__top">
+          <img class="product-card__icon" src="/assets/products/anon-postal/icon.png" alt="" width="48" height="48" loading="lazy">
+          <span class="badge badge--info">Web App</span>
+        </div>
+        <div>
+          <h3 class="product-card__name">Anon Postal</h3>
+          <p class="product-card__desc">Publish a public post with no account, or sign in for a private workspace with a custom expiry.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>
