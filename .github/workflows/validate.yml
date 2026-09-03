@@ -44,6 +44,10 @@ jobs:
           root: .
           extra: "--ignore-re=/ziduri-handbook/.*"
 
+      # chromewebstore.google.com is excluded: it returns 200 to normal
+      # browsers and even plain curl, but blocks/challenges traffic from
+      # GitHub Actions' shared IP ranges specifically. Verify that link
+      # manually if it ever changes.
       - name: Broken link check
         uses: lycheeverse/lychee-action@v2
         with:
@@ -51,5 +55,10 @@ jobs:
             --no-progress
             --exclude-mail
             --exclude "^https://ziduri\.in"
+            --exclude "^https://chromewebstore\.google\.com"
+            --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            --retry-wait-time 5
+            --max-retries 3
+            --timeout 20
             './**/*.html'
           fail: true
