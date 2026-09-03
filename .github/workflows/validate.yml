@@ -45,14 +45,19 @@ jobs:
           extra: "--ignore-re=/ziduri-handbook/.*"
 
       # lychee excludes mailto: links by default, so no flag is needed for
-      # that (there is no --exclude-mail flag — that was a mistake in an
-      # earlier version of this file and made the whole step fail before
-      # it ever checked a single link).
+      # that (there is no --exclude-mail flag). --root-dir tells lychee how
+      # to resolve root-relative links (href="/products/", href="/css/..."
+      # etc.) against the checked-out repo — without it, every single
+      # root-relative link on every page fails with "Cannot resolve
+      # root-relative link", since lychee has no other way to know that "/"
+      # means the repo root and not the filesystem root. It must be an
+      # absolute path, hence github.workspace rather than ".".
       - name: Broken link check
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --no-progress
+            --root-dir "${{ github.workspace }}"
             --exclude "^https://ziduri\.in"
             --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
             --retry-wait-time 5
