@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marker Documentation — Ziduri</title>
+<meta name="description" content="How Marker's View/Edit/Split modes work, keyboard shortcuts, installation per platform, browser mode behavior, and troubleshooting.">
+<link rel="canonical" href="https://ziduri.in/products/marker/docs/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="Marker Documentation">
+<meta property="og:description" content="How Marker works, installation per platform, browser mode, and troubleshooting.">
+<meta property="og:url" content="https://ziduri.in/products/marker/docs/">
+<meta property="og:image" content="https://ziduri.in/assets/products/marker/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Marker Documentation">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/marker/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Marker", "item": "https://ziduri.in/products/marker/"},
+    {"@type": "ListItem", "position": 4, "name": "Documentation", "item": "https://ziduri.in/products/marker/docs/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/marker/">Marker</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Documentation</span>
+  </nav>
+
+  <section class="section--tight container">
+    <span class="eyebrow">Documentation</span>
+    <h1 class="section-title">Marker documentation</h1>
+    <p class="section-lede">How Marker's View/Edit/Split modes work, its keyboard shortcuts, install steps per platform, browser mode behavior, and fixes for common issues.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="prose">
+      <h2>How it's built</h2>
+      <p>Marker is a single SvelteKit frontend (static/SPA build) that runs unmodified in two hosts. A platform-detection layer decides at runtime how files actually get read and written: through <a href="https://tauri.app" rel="noopener">Tauri</a>'s Rust backend on desktop, or through the browser's File System Access API on the web. The editor pane is <a href="https://codemirror.net" rel="noopener">CodeMirror 6</a>, lazy-loaded so it costs nothing until you open Edit or Split. Rendering goes through <code>marked</code> with <code>marked-highlight</code> and <code>highlight.js</code> for syntax-highlighted code fences, and every rendered file is passed through <code>DOMPurify.sanitize()</code> before it reaches the page — there's no "trusted source" exception, since the whole point is opening files from disk.</p>
+
+      <h2>View, Edit and Split modes</h2>
+      <p>Every open file has a mode: <strong>View</strong> renders the markdown read-only, <strong>Edit</strong> shows the CodeMirror source editor, and <strong>Split</strong> shows both side by side, live. <code>Ctrl/Cmd+E</code> toggles between View and Edit; Split is a separate toolbar option. Switching modes never discards unsaved changes — the underlying content is the same string regardless of which pane is showing it.</p>
+
+      <h2>Opening files and folders</h2>
+      <p><strong>Open File</strong> opens a single <code>.md</code> file. <strong>Open Folder</strong> lists that folder's top-level markdown files in the sidebar so you can switch between them with a click — it does not recurse into subfolders. Selecting a different file while the current one has unsaved changes triggers a confirmation prompt before switching.</p>
+
+      <h2>Saving</h2>
+      <p><code>Ctrl/Cmd+S</code> saves the current file in place. On desktop this writes directly to the original path via a Tauri command, with a retry if the write is momentarily blocked (e.g. by another process holding the file). In the browser, save-in-place works the same way in Chromium browsers via the File System Access API; in browsers without that API, saving downloads a new file instead of overwriting the original.</p>
+
+      <h2>Keyboard shortcuts</h2>
+      <div class="table-scroll">
+        <table class="perm-table">
+          <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><code>Ctrl/Cmd+E</code></td><td>Toggle View / Edit mode</td></tr>
+            <tr><td><code>Ctrl/Cmd+S</code></td><td>Save the current file in place</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Installation</h2>
+      <h3>Windows</h3>
+      <p>Download <code>Marker_&lt;version&gt;_x64-setup.exe</code> or the <code>.msi</code> from the <a href="https://github.com/tungnath/mdIDE/releases/latest" rel="noopener">latest release</a> and run it — either installer works. Marker isn't code-signed, so Windows SmartScreen will show an "unrecognized publisher" warning the first time: click More info, then Run anyway.</p>
+      <h3>macOS</h3>
+      <p>Download the <code>.dmg</code> matching your Mac's chip: <code>_aarch64.dmg</code> for Apple Silicon, <code>_x64.dmg</code> for Intel. The app isn't code-signed, so Gatekeeper blocks the first launch — right-click the app in Applications and choose Open once to bypass it. (The <code>.app.tar.gz</code> files in each release are auto-update artifacts, not for manual download.)</p>
+      <h3>Linux</h3>
+      <p>Use whichever package matches your distro: <code>.deb</code> for Debian/Ubuntu, <code>.rpm</code> for Fedora/RHEL, or the <code>.AppImage</code> for any distro (make it executable and run it directly).</p>
+      <h3>Browser (no install)</h3>
+      <p>Open <a href="https://markdw.netlify.app/" rel="noopener">markdw.netlify.app</a>. In Chrome or Edge, folder browsing and save-in-place work via the File System Access API, matching the desktop experience. In Firefox, Safari and other browsers without that API, you can still open and edit a single file, but saving downloads a new copy instead of overwriting the original.</p>
+
+      <h2>Troubleshooting</h2>
+      <h3>Windows blocks the installer with a SmartScreen warning</h3>
+      <p>This is expected for an unsigned build. Click "More info" in the SmartScreen dialog, then "Run anyway."</p>
+      <h3>macOS says the app is damaged or can't be opened</h3>
+      <p>Right-click (not double-click) the app in Finder and choose Open — this is Gatekeeper's one-time confirmation for unsigned apps, not an actual problem with the download.</p>
+      <h3>Save isn't overwriting my file in the browser</h3>
+      <p>Save-in-place needs the File System Access API, which only Chromium-based browsers (Chrome, Edge) currently support. In other browsers, saving always downloads a new file — this is a platform limitation, not something the app can work around.</p>
+      <h3>A subfolder's markdown files aren't showing up</h3>
+      <p>Open Folder only lists a folder's top-level <code>.md</code> files by design; it doesn't recurse into subfolders. Open a subfolder directly, or open the file individually with Open File.</p>
+
+      <h2>Source &amp; license</h2>
+      <p>Marker is MIT-licensed and open source. Full source, issues and releases are on <a href="https://github.com/tungnath/mdIDE" rel="noopener">GitHub</a>.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div>
+        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">Related</h2>
+        <p class="text-secondary">Back to the product page, release notes, or privacy details.</p>
+      </div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
+        <a class="btn btn-secondary" href="/products/marker/">Product overview</a>
+        <a class="btn btn-secondary" href="/products/marker/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/marker/">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+          Ziduri
+        </a>
+        <p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Products</div>
+        <ul>
+          <li><a href="/products/">All products</a></li>
+          <li><a href="/products/browser-native-notes/">Float Note</a></li>
+          <li><a href="/products/liteview/">LiteView</a></li>
+          <li><a href="/products/ephemera/">Ephemera</a></li>
+          <li><a href="/products/anon-postal/">Anon Postal</a></li>
+          <li><a href="/products/marker/">Marker</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Company</div>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ziduri. All rights reserved.</p>
+      <p>Built in India.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

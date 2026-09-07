@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About Ziduri</title>
-<meta name="description" content="Ziduri is a product studio building lightweight, dependable productivity software. Learn about the principles behind how we build.">
-<link rel="canonical" href="https://ziduri.in/about/">
+<title>Marker Changelog — Ziduri</title>
+<meta name="description" content="Release notes for the Marker markdown viewer and editor.">
+<link rel="canonical" href="https://ziduri.in/products/marker/changelog/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ziduri">
-<meta property="og:title" content="About Ziduri">
-<meta property="og:description" content="A product studio building lightweight, dependable productivity software.">
-<meta property="og:url" content="https://ziduri.in/about/">
-<meta property="og:image" content="https://ziduri.in/assets/images/og-default.png">
+<meta property="og:title" content="Marker Changelog">
+<meta property="og:description" content="Release notes for the Marker markdown viewer and editor.">
+<meta property="og:url" content="https://ziduri.in/products/marker/changelog/">
+<meta property="og:image" content="https://ziduri.in/assets/products/marker/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Ziduri">
-<meta name="twitter:image" content="https://ziduri.in/assets/images/og-default.png">
+<meta name="twitter:title" content="Marker Changelog">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/marker/og-image.png">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
@@ -26,6 +26,19 @@
 <link rel="stylesheet" href="/css/tokens.css">
 <link rel="stylesheet" href="/css/site.css">
 <script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "Marker", "item": "https://ziduri.in/products/marker/"},
+    {"@type": "ListItem", "position": 4, "name": "Changelog", "item": "https://ziduri.in/products/marker/changelog/"}
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -37,8 +50,8 @@
     </a>
     <nav class="nav-primary" data-nav-primary aria-label="Primary">
       <div class="nav-primary__links">
-        <a href="/products/">Products</a>
-        <a href="/about/" aria-current="page">About</a>
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
         <a href="/blog/">Blog</a>
         <a href="/contact/">Contact</a>
       </div>
@@ -59,46 +72,33 @@
   <nav class="breadcrumb container" aria-label="Breadcrumb">
     <a href="/">Home</a>
     <span class="breadcrumb__sep">/</span>
-    <span aria-current="page">About</span>
+    <a href="/products/">Products</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/products/marker/">Marker</a>
+    <span class="breadcrumb__sep">/</span>
+    <span aria-current="page">Changelog</span>
   </nav>
 
   <section class="section--tight container">
-    <span class="eyebrow">About</span>
-    <h1 class="section-title" style="font-size: var(--z-fs-3xl); max-width:700px;">Software that respects your time and your data</h1>
-    <p class="section-lede" style="font-size: var(--z-fs-lg); max-width:640px;">Ziduri is a product studio building small, dependable software for the parts of digital work that repeat every day — a note, a shortcut, a utility that should have existed already.</p>
+    <span class="eyebrow">Changelog</span>
+    <h1 class="section-title">Marker release notes</h1>
   </section>
 
   <section class="section--tight container">
     <div class="prose">
-      <h2>Why Ziduri exists</h2>
-      <p>Most software gets heavier over time — more accounts, more permissions, more screens between you and the thing you actually wanted to do. Ziduri is built against that drift. Every product starts from one clear, recurring problem, and stays scoped to solving it well.</p>
-
-      <h2>How we build</h2>
-      <p>A short set of principles guides every product, regardless of platform:</p>
+      <h2>v0.1.0 — September 2026</h2>
+      <p>Initial public release.</p>
       <ul>
-        <li><strong>Lightweight and fast.</strong> A tool should feel instant, not heavy.</li>
-        <li><strong>One problem, solved well.</strong> We'd rather ship a focused utility than a bloated suite.</li>
-        <li><strong>Minimal data collection.</strong> We collect only what a product needs to function, and we document it plainly.</li>
-        <li><strong>Durable over trendy.</strong> We choose technology built to last, not what's fashionable this year.</li>
-        <li><strong>Accessible by default.</strong> Keyboard, screen-reader and varied-contrast users are part of the first draft, not an afterthought.</li>
-        <li><strong>A lifecycle plan for every product.</strong> Nothing ships without a plan for how it's maintained.</li>
+        <li>View, Edit and Split modes, with <code>Ctrl/Cmd+E</code> toggling View/Edit</li>
+        <li>Open a single markdown file, or a folder to browse its top-level .md files</li>
+        <li>Save in place with <code>Ctrl/Cmd+S</code>, with an unsaved-changes prompt before switching or closing files</li>
+        <li>GitHub-flavored markdown with syntax-highlighted code blocks</li>
+        <li>Light and dark theme</li>
+        <li>Windows, macOS (Apple Silicon + Intel) and Linux (.deb/.rpm/.AppImage) desktop builds via Tauri</li>
+        <li>Browser mode at markdw.netlify.app, with full folder browsing and save-in-place in Chromium browsers via the File System Access API</li>
+        <li>No accounts, no telemetry, no network requests</li>
       </ul>
-
-      <h2>What we're building toward</h2>
-      <p>Ziduri's first releases are <a href="/products/browser-native-notes/">Float Note</a>, a browser extension, <a href="/products/liteview/">LiteView</a>, a desktop image viewer, and two web apps: <a href="/products/ephemera/">Ephemera</a> and <a href="/products/anon-postal/">Anon Postal</a>. The portfolio is designed to grow deliberately from there — across Android apps, developer tools, AI tools, plugins and SaaS — built for developers, students, office professionals, businesses and general consumers.</p>
-
-      <h2>Status</h2>
-      <p>Ziduri is early. Four products are shipping so far, with more in progress; the studio, the site and the roadmap will keep evolving in the open as more ships.</p>
-    </div>
-  </section>
-
-  <section class="section--tight container">
-    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
-      <div>
-        <h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">Get in touch</h2>
-        <p class="text-secondary">Questions, feedback, or just want to say hello.</p>
-      </div>
-      <a class="btn btn-primary" href="/contact/">Contact Ziduri</a>
+      <p><a href="https://github.com/tungnath/mdIDE/releases/tag/v0.1.0" rel="noopener">View this release on GitHub</a></p>
     </div>
   </section>
 </main>
