@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="ephTitle">
-  <title id="ephTitle">Illustration of the Ephemera start screen: a dark room with a Create Room panel and a room-code join field</title>
+  <title id="ephTitle">Illustration of the Ephemera start screen: a dark room with a Create Room panel, a room-code join field, and an end-to-end encrypted badge with a safety code</title>
   <defs>
     <linearGradient id="ephBg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#3d1526"/>
@@ -11,6 +11,15 @@
 
   <text x="56" y="150" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#fffaf7">Ephemera</text>
   <text x="56" y="120" font-family="Arial, sans-serif" font-size="12" letter-spacing="2" fill="#d4a24e">EPHEMERAL ROOMS</text>
+
+  <g transform="translate(56,230)">
+    <rect width="230" height="60" rx="10" fill="#ffffff" fill-opacity="0.08" stroke="#d4a24e" stroke-width="1"/>
+    <path d="M17 20 a5 5 0 0 1 10 0 v4 h-10 z" fill="none" stroke="#d4a24e" stroke-width="1.6"/>
+    <rect x="14" y="24" width="16" height="13" rx="2" fill="#d4a24e"/>
+    <text x="40" y="27" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fffaf7">End-to-end encrypted</text>
+    <text x="40" y="42" font-family="Arial, sans-serif" font-size="9" fill="#c9b8bd">Safety code</text>
+    <text x="105" y="42" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#d4a24e">7F2A-91C4</text>
+  </g>
 
   <g transform="translate(356,110)">
     <rect width="230" height="180" rx="14" fill="#fffaf7" fill-opacity="0.94"/>

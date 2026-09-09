@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ephemera Privacy Policy — Ziduri</title>
-<meta name="description" content="Ephemera's privacy policy: no accounts, no persisted messages, and what room metadata the server briefly tracks.">
+<meta name="description" content="Ephemera's privacy policy: end-to-end encrypted messages, no accounts, no persisted content, and what room metadata the server briefly tracks.">
 <link rel="canonical" href="https://ziduri.in/privacy/ephemera/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ziduri">
 <meta property="og:title" content="Ephemera Privacy Policy">
-<meta property="og:description" content="No accounts, no persisted messages — what Ephemera actually stores.">
+<meta property="og:description" content="End-to-end encrypted, no accounts, no persisted content — what Ephemera actually stores.">
 <meta property="og:url" content="https://ziduri.in/privacy/ephemera/">
 <meta property="og:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -79,34 +79,72 @@
   <section class="section--tight container">
     <span class="eyebrow">Privacy Policy</span>
     <h1 class="section-title">Ephemera Privacy Policy</h1>
-    <p class="text-tertiary" style="font-size: var(--z-fs-sm);">Effective date: August 2026 · Version 1.0 · Applies to the Ephemera web app</p>
+    <p class="text-tertiary" style="font-size: var(--z-fs-sm);">Effective date: September 2026 · Version 2.0 · Applies to the Ephemera web app</p>
   </section>
 
   <section class="section--tight container">
     <div class="prose">
-      <div class="callout callout--warning" style="margin-bottom: var(--z-space-6);">
-        Ephemera does not persist your messages or images, and has no accounts — but it is also not end-to-end encrypted. Read "Security model" below before using it for anything sensitive.
+      <div class="callout callout--success" style="margin-bottom: var(--z-space-6);">
+        Ephemera's messages and images are end-to-end encrypted — the server relays ciphertext it cannot read. It also has no accounts and persists no message content. Read "Security model" below for exactly what that does and doesn't protect against.
       </div>
 
       <h2>Overview</h2>
       <p>Ephemera ("the Application") is a minimal, no-signup messaging web app built on Cloudflare Workers and Durable Objects. This policy explains exactly what data the Application handles, where it lives, and what happens to it.</p>
 
       <h2>What data is processed</h2>
-      <p>Ephemera processes only what's needed to relay a live conversation:</p>
+      <p>Ephemera processes only what's needed to relay a live, encrypted conversation:</p>
       <ul>
-        <li><strong>Messages and images</strong> you send in a room, relayed in real time to the other people currently in that room.</li>
+        <li><strong>Message and image content</strong> — encrypted on your device before it ever leaves it, then relayed as ciphertext in real time to the other person in the room. Ephemera's server never has the key and never sees the plaintext.</li>
+        <li><strong>Encryption key material</strong> — each device generates a fresh public/private key pair for the room and sends only the public key over the relay, along with a handshake commitment used to detect tampering. Private keys never leave the device that generated them.</li>
         <li><strong>Room codes</strong> — short identifiers used to let people join the same room.</li>
       </ul>
       <p>Ephemera does not ask for or collect your name, email, or any account information — there is no account system.</p>
 
       <h2>What is never stored</h2>
-      <p>Messages and images are relayed live between connected participants and are <strong>not written to any database or persistent storage</strong>. There is no message history to look back on, by design — once a room's participants disconnect and the room cleans up, there is nothing left to recover, for you or for anyone else.</p>
+      <p>Message and image content — encrypted or not — is relayed live between connected participants and is <strong>not written to any database or persistent storage</strong>. Decrypted images held in your browser's memory for the preview modal are released when you leave the room. There is no message history to look back on, by design — once a room's participants disconnect and the room cleans up, there is nothing left to recover, for you or for anyone else. Encryption keys are generated fresh for each room and are never written to storage anywhere, on the server or on your device.</p>
+
+      <h2>What the server can still see</h2>
+      <p>End-to-end encryption hides content, not the fact that a conversation happened. Ephemera's relay still observes:</p>
+      <ul>
+        <li>Which room codes exist and how many devices are connected to each.</li>
+        <li>Handshake public keys and commitments — these are meant to be public and reveal nothing about the resulting encryption key.</li>
+        <li>Message timing and approximate size (the ciphertext length).</li>
+        <li>IP addresses, as any relay server sees.</li>
+      </ul>
+      <p>It cannot see message text, image content, filenames, MIME types, or even whether a given message is text or an image — that's all inside the encrypted envelope.</p>
 
       <h2>What is stored, briefly, and why</h2>
       <p>A server-side registry tracks which room codes currently exist and whether the system is at its active-room limit, so it can enforce a maximum of 3 active rooms at once and clean up abandoned rooms. This registry holds room lifecycle metadata only — never chat content — and entries expire automatically (roughly 10 minutes for inactive/unclaimed rooms, roughly 2 minutes after a room empties out).</p>
 
       <h2>Security model</h2>
-      <p>Messages travel over a secure WebSocket connection to Ephemera's server, which relays them to everyone in the room. This connection is encrypted in transit, but <strong>messages are not end-to-end encrypted</strong> — the server relays plaintext content rather than opaque encrypted blobs. There is also no authentication: anyone who has a room's code can join it. Treat Ephemera as private-by-default for casual use, not as a tool for sensitive or confidential communication.</p>
+      <p>Ephemera's messages and images are end-to-end encrypted. The two devices in a room agree on a session key themselves; the server relays only what it needs to make that possible, and never sees anything it could use to decrypt your content.</p>
+
+      <h3>How the encryption works</h3>
+      <ul>
+        <li><strong>Key agreement:</strong> ephemeral ECDH on curve P-256, using a commit-then-reveal handshake so the relay can't grind a substitute keypair to match an expected result.</li>
+        <li><strong>Key derivation:</strong> HKDF-SHA256 over the ECDH output, binding both devices' public keys so a replayed or spliced handshake derives a different key.</li>
+        <li><strong>Encryption:</strong> AES-256-GCM, an authenticated cipher — it hides content and detects tampering, with a fresh random IV per message.</li>
+        <li><strong>Forward secrecy:</strong> keys are generated fresh for every room and never stored, so a key recovered later cannot decrypt an earlier conversation.</li>
+        <li><strong>Enforced at the protocol level:</strong> Ephemera's server rejects any plaintext <code>text</code> or <code>image</code> message outright — only encrypted envelopes and handshake frames are accepted. Encryption isn't just what the app happens to do; the server won't relay anything else.</li>
+      </ul>
+
+      <h3>The safety code, and what it protects against</h3>
+      <p>Both devices display a short safety code derived from the agreed keys. If those codes match, the key exchange completed exactly as both sides intended. If a relay attempted to substitute its own keys during the handshake — a man-in-the-middle attack — the two devices would derive different keys, and their safety codes would differ. <strong>Comparing the safety code is the actual security check</strong>; Ephemera doesn't force it, so an attack during the handshake is only caught if you do.</p>
+
+      <h3>What this does and doesn't protect against</h3>
+      <div class="table-scroll">
+        <table class="perm-table">
+          <thead><tr><th>Situation</th><th>Outcome</th></tr></thead>
+          <tbody>
+            <tr><td>Someone eavesdropping on the network</td><td>Defeated — they see only ciphertext, on top of the TLS connection itself</td></tr>
+            <tr><td>A curious or compromised relay operator</td><td>Defeated — the encryption key is never derivable from anything the server holds</td></tr>
+            <tr><td>A server breach, log dump, or data request</td><td>Defeated — nothing stored on the server can decrypt past conversations</td></tr>
+            <tr><td>A relay that actively tampers during the handshake</td><td>Detectable, not prevented — the safety codes will differ if you check them</td></tr>
+            <tr><td>Confirming who you're actually talking to</td><td>Not covered — there's no identity system, so the safety code confirms a shared key, not a person</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>There is also no authentication on room membership: anyone who has a room's code can join it, and rooms hold exactly two devices — a third is refused at the connection level. Treat Ephemera as end-to-end encrypted casual messaging, not as an audited secure-communications product.</p>
 
       <h2>Third parties and analytics</h2>
       <p>Ephemera does not use analytics, tracking, or advertising. It runs entirely on Cloudflare's infrastructure (Workers and Durable Objects) to serve the app and relay messages.</p>
@@ -118,7 +156,7 @@
       <p>There is nothing to delete on request, because message and image content is never persisted in the first place. Room metadata (the fact that a room code exists) clears itself automatically per the timings above — there is no manual deletion flow because none is needed.</p>
 
       <h2>Changes to this policy</h2>
-      <p>Ephemera is an early-stage MVP and may change. If a future version adds persistence, accounts, or end-to-end encryption, this policy will be updated first, and the version and effective date above will change accordingly.</p>
+      <p>Ephemera is an early-stage MVP and may change. If a future version adds persistence, accounts, or identity verification beyond the safety code, this policy will be updated first, and the version and effective date above will change accordingly.</p>
 
       <h2>Contact</h2>
       <p>Questions about this policy can be sent through the <a href="/contact/">contact page</a>.</p>

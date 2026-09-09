@@ -86,6 +86,16 @@
 
   <section class="section--tight container">
     <div class="prose">
+      <h2>End-to-end encryption — September 2026</h2>
+      <p>Messages and images are now end-to-end encrypted, closing the biggest gap from the initial MVP.</p>
+      <ul>
+        <li>End-to-end encryption via ephemeral ECDH (P-256) key agreement and AES-256-GCM, negotiated directly between the two devices in a room</li>
+        <li>Safety code shown on both devices to detect a tampered handshake</li>
+        <li>Forward secrecy — keys are generated fresh per room and never stored anywhere</li>
+        <li>The server now rejects any plaintext message; only encrypted envelopes and handshake frames are accepted</li>
+        <li>QR code join, so a room can be shared by scan instead of typing the code</li>
+      </ul>
+
       <h2>v0.1.0 — MVP</h2>
       <p>Initial minimal viable product.</p>
       <ul>

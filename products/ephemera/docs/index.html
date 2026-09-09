@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ephemera Documentation — Ziduri</title>
-<meta name="description" content="How Ephemera's rooms, messaging and expiry work, and its current limitations.">
+<meta name="description" content="How Ephemera's end-to-end encryption, rooms, messaging and expiry work, and its current limitations.">
 <link rel="canonical" href="https://ziduri.in/products/ephemera/docs/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ziduri">
 <meta property="og:title" content="Ephemera Documentation">
-<meta property="og:description" content="How Ephemera's rooms, messaging and expiry work, and its current limitations.">
+<meta property="og:description" content="How Ephemera's end-to-end encryption, rooms, messaging and expiry work, and its current limitations.">
 <meta property="og:url" content="https://ziduri.in/products/ephemera/docs/">
 <meta property="og:image" content="https://ziduri.in/assets/products/ephemera/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -82,13 +82,18 @@
   <section class="section--tight container">
     <span class="eyebrow">Documentation</span>
     <h1 class="section-title">Ephemera documentation</h1>
-    <p class="section-lede">How rooms, messaging and expiry work under the hood, and what Ephemera deliberately doesn't do yet.</p>
+    <p class="section-lede">How end-to-end encryption, rooms, messaging and expiry work under the hood, and what Ephemera deliberately doesn't do yet.</p>
   </section>
 
   <section class="section--tight container">
     <div class="prose">
+      <h2>How the encryption works</h2>
+      <p>The two devices in a room negotiate an AES-256-GCM session key themselves, using ephemeral ECDH on curve P-256. Each device generates a fresh key pair, commits to a hash of its public key and a random nonce, then reveals the actual key and nonce — the commit-then-reveal order stops a malicious relay from grinding a keypair that would reproduce an expected result after seeing the other side's key first. Both sides then run the shared ECDH output through HKDF-SHA256 (salted with the room ID, bound to both public keys) to derive the actual session key. The server relays public keys and commitments — both meaningless to an eavesdropper — and never sees the shared secret or the resulting key.</p>
+      <p>Every message and image is sealed with that key using AES-256-GCM before it leaves your device, with a fresh random IV per message and the room ID bound in as additional authenticated data (so a ciphertext can't be replayed into a different room). The server's WebSocket handler only accepts handshake frames and encrypted envelopes — a plaintext <code>text</code> or <code>image</code> message is rejected outright, which is what makes end-to-end encryption a property of the protocol rather than a client-side convention.</p>
+      <p>Both devices display a short <strong>safety code</strong> derived from the two agreed public keys. Comparing it (read one aloud, or look at both screens) confirms the handshake wasn't intercepted — if a relay substituted its own keys toward either side, the resulting safety codes would differ. Keys are ephemeral per room and never stored, so a key recovered later cannot decrypt an earlier conversation.</p>
+
       <h2>How rooms work</h2>
-      <p>Creating a room requests a short room code from the server. Anyone with that code — or a direct <code>/r/&lt;room-id&gt;</code> link, which auto-joins — can enter the same room. Everyone connected to a room communicates over a shared WebSocket connection, so text and images sent by one participant appear instantly for everyone else in the room.</p>
+      <p>Creating a room requests a short room code from the server. Anyone with that code — or a direct <code>/r/&lt;room-id&gt;</code> link, which auto-joins — can enter the same room. Everyone connected to a room communicates over a shared WebSocket connection, so encrypted text and images sent by one participant appear instantly for everyone else in the room.</p>
 
       <h2>What you can send</h2>
       <ul>
@@ -121,8 +126,8 @@
 
       <h2>Known limitations</h2>
       <ul>
-        <li>No end-to-end encryption — messages are relayed by the server, not encrypted client-to-client.</li>
-        <li>No authentication or identity — anyone with a room's code can join it.</li>
+        <li>No forced verification — the safety code detects a tampered handshake, but nothing requires participants to actually compare it.</li>
+        <li>No authentication or identity — anyone with a room's code can join it, and the safety code confirms a shared key, not who's holding the other device.</li>
         <li>No persistent message history.</li>
         <li>No room recovery if a code is lost.</li>
         <li>Images only — no other file types.</li>
