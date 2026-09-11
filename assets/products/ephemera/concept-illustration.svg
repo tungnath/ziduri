@@ -1,18 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="ephTitle">
-  <title id="ephTitle">Illustration of the Ephemera start screen: a dark room with a Create Room panel, a room-code join field, and an end-to-end encrypted badge with a safety code</title>
+  <title id="ephTitle">Illustration of the Ephemera start screen: the chat-bubble brand mark next to the Ephemera title, an About &amp; privacy link, floating message-bubble decorations, a Create Room panel, and a room-code join field</title>
   <defs>
-    <linearGradient id="ephBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#3d1526"/>
+    <radialGradient id="ephBg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#4a1c2b"/>
+      <stop offset="55%" stop-color="#3a1522"/>
       <stop offset="100%" stop-color="#280d18"/>
+    </radialGradient>
+    <linearGradient id="ephBrand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f4cfa8"/>
+      <stop offset="100%" stop-color="#c9a27e"/>
     </linearGradient>
   </defs>
 
-  <rect x="16" y="16" width="608" height="368" rx="14" fill="url(#ephBg)"/>
+  <clipPath id="ephClip"><rect x="16" y="16" width="608" height="368" rx="16"/></clipPath>
 
-  <text x="56" y="150" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#fffaf7">Ephemera</text>
-  <text x="56" y="120" font-family="Arial, sans-serif" font-size="12" letter-spacing="2" fill="#d4a24e">EPHEMERAL ROOMS</text>
+  <rect x="16" y="16" width="608" height="368" rx="16" fill="url(#ephBg)"/>
 
-  <g transform="translate(56,230)">
+  <g clip-path="url(#ephClip)" opacity="0.5">
+    <!-- floating chat-bubble decorations, echoing the app's own background art -->
+    <rect x="30" y="28" width="46" height="34" rx="9" fill="#e8b98f" opacity="0.22" transform="rotate(-8 53 45)"/>
+    <circle cx="45" cy="42" r="2.4" fill="#e8b98f" opacity="0.5" transform="rotate(-8 53 45)"/>
+    <circle cx="53" cy="42" r="2.4" fill="#e8b98f" opacity="0.5" transform="rotate(-8 53 45)"/>
+    <circle cx="61" cy="42" r="2.4" fill="#e8b98f" opacity="0.5" transform="rotate(-8 53 45)"/>
+    <path d="M40 90 q60 -50 140 -10" fill="none" stroke="#e8b98f" stroke-width="1" opacity="0.35"/>
+    <circle cx="180" cy="80" r="3" fill="#f4cfa8" opacity="0.55"/>
+
+    <rect x="556" y="70" width="50" height="36" rx="9" fill="#e8b98f" opacity="0.2" transform="rotate(7 581 88)"/>
+    <circle cx="571" cy="88" r="2.4" fill="#e8b98f" opacity="0.45" transform="rotate(7 581 88)"/>
+    <circle cx="581" cy="88" r="2.4" fill="#e8b98f" opacity="0.45" transform="rotate(7 581 88)"/>
+    <circle cx="591" cy="88" r="2.4" fill="#e8b98f" opacity="0.45" transform="rotate(7 581 88)"/>
+    <path d="M470 40 q60 60 130 10" fill="none" stroke="#e8b98f" stroke-width="1" opacity="0.3"/>
+
+    <rect x="60" y="300" width="50" height="38" rx="9" fill="#e8b98f" opacity="0.18" transform="rotate(-6 85 319)"/>
+    <path d="M0 340 q90 40 190 6" fill="none" stroke="#e8b98f" stroke-width="1" opacity="0.3"/>
+    <circle cx="120" cy="352" r="2.6" fill="#f4cfa8" opacity="0.5"/>
+  </g>
+
+  <text x="56" y="112" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="2" fill="#d4a24e">EPHEMERAL ROOMS</text>
+
+  <!-- brand mark: layered chat-bubble icon + wordmark -->
+  <g transform="translate(48,110) scale(0.048)">
+    <path d="M716 334H360c-72 0-130 58-130 130v114c0 72 58 130 130 130h130l110 96c20 18 52 4 52-23v-73h64c72 0 130-58 130-130V464c0-72-58-130-130-130Z" fill="#9b6c49" opacity="0.55"/>
+    <path d="M672 272H308c-72 0-130 58-130 130v130c0 72 58 130 130 130h154l130 112c21 18 53 3 53-24v-88h27c72 0 130-58 130-130V402c0-72-58-130-130-130Z" fill="url(#ephBrand)"/>
+    <circle cx="360" cy="466" r="36" fill="#4a1c2b"/>
+    <circle cx="490" cy="466" r="36" fill="#4a1c2b"/>
+    <circle cx="620" cy="466" r="36" fill="#4a1c2b"/>
+  </g>
+  <text x="94" y="150" font-family="Arial, sans-serif" font-size="40" font-weight="800" fill="#fffaf7">Ephemera</text>
+
+  <text x="56" y="177" font-family="Arial, sans-serif" font-size="11" font-weight="800" fill="#f4cfa8" text-decoration="underline">About &amp; privacy</text>
+
+  <g transform="translate(56,220)">
     <rect width="230" height="60" rx="10" fill="#ffffff" fill-opacity="0.08" stroke="#d4a24e" stroke-width="1"/>
     <path d="M17 20 a5 5 0 0 1 10 0 v4 h-10 z" fill="none" stroke="#d4a24e" stroke-width="1.6"/>
     <rect x="14" y="24" width="16" height="13" rx="2" fill="#d4a24e"/>
@@ -21,20 +59,20 @@
     <text x="105" y="42" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#d4a24e">7F2A-91C4</text>
   </g>
 
-  <g transform="translate(356,110)">
-    <rect width="230" height="180" rx="14" fill="#fffaf7" fill-opacity="0.94"/>
-    <text x="18" y="34" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#32121d">No room yet?</text>
-    <text x="18" y="52" font-family="Arial, sans-serif" font-size="10" fill="#766873">Create a new room and share the link.</text>
-    <rect x="18" y="64" width="194" height="30" rx="8" fill="#4a1c2b"/>
-    <text x="115" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#fffaf7">Create Room</text>
+  <g transform="translate(356,100)">
+    <rect width="230" height="200" rx="16" fill="#fffaf7" fill-opacity="0.94"/>
+    <text x="20" y="36" font-family="Arial, sans-serif" font-size="14" font-weight="800" fill="#32121d">No room yet?</text>
+    <text x="20" y="55" font-family="Arial, sans-serif" font-size="10" fill="#766873">Read the code to your other device.</text>
+    <rect x="20" y="68" width="190" height="32" rx="7" fill="#32121d"/>
+    <text x="115" y="89" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#fffaf7">Create Room</text>
 
-    <line x1="18" y1="110" x2="212" y2="110" stroke="#e6dcd8" stroke-width="1"/>
+    <line x1="20" y1="116" x2="210" y2="116" stroke="#e6dcd8" stroke-width="1"/>
 
-    <text x="18" y="130" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#32121d">Already have a code?</text>
-    <text x="18" y="146" font-family="Arial, sans-serif" font-size="9" fill="#766873">Room code</text>
-    <rect x="18" y="152" width="130" height="26" rx="7" fill="#ffffff" stroke="#ddd4d7"/>
-    <text x="26" y="169" font-family="Arial, sans-serif" font-size="11" fill="#9a8f93">abc123</text>
-    <rect x="154" y="152" width="58" height="26" rx="7" fill="#32121d"/>
-    <text x="183" y="169" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fffaf7">Join</text>
+    <text x="20" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="800" fill="#32121d">Already have a code?</text>
+    <text x="20" y="154" font-family="Arial, sans-serif" font-size="9" fill="#766873">Room code</text>
+    <rect x="20" y="160" width="128" height="28" rx="7" fill="#ffffff" stroke="#ddd4d7"/>
+    <text x="28" y="178" font-family="Arial, sans-serif" font-size="11" fill="#9a8f93">abc123</text>
+    <rect x="156" y="160" width="54" height="28" rx="7" fill="#32121d"/>
+    <text x="183" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fffaf7">Join</text>
   </g>
 </svg>
