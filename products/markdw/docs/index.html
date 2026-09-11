@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marker Documentation — Ziduri</title>
-<meta name="description" content="How Marker's View/Edit/Split modes work, keyboard shortcuts, installation per platform, browser mode behavior, and troubleshooting.">
-<link rel="canonical" href="https://ziduri.in/products/marker/docs/">
+<title>MarkDW Documentation — Ziduri</title>
+<meta name="description" content="How MarkDW's View/Edit/Split modes, clipboard paste, HTML/PDF/plain-text export, the Harbor/Sage designs, keyboard shortcuts, installation, and browser mode work, plus troubleshooting.">
+<link rel="canonical" href="https://ziduri.in/products/markdw/docs/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ziduri">
-<meta property="og:title" content="Marker Documentation">
-<meta property="og:description" content="How Marker works, installation per platform, browser mode, and troubleshooting.">
-<meta property="og:url" content="https://ziduri.in/products/marker/docs/">
-<meta property="og:image" content="https://ziduri.in/assets/products/marker/og-image.png">
+<meta property="og:title" content="MarkDW Documentation">
+<meta property="og:description" content="How MarkDW's editing, clipboard paste, export, designs, installation and browser mode work, plus troubleshooting.">
+<meta property="og:url" content="https://ziduri.in/products/markdw/docs/">
+<meta property="og:image" content="https://ziduri.in/assets/products/markdw/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Marker Documentation">
-<meta name="twitter:image" content="https://ziduri.in/assets/products/marker/og-image.png">
+<meta name="twitter:title" content="MarkDW Documentation">
+<meta name="twitter:image" content="https://ziduri.in/assets/products/markdw/og-image.png">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
@@ -34,8 +34,8 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
     {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
-    {"@type": "ListItem", "position": 3, "name": "Marker", "item": "https://ziduri.in/products/marker/"},
-    {"@type": "ListItem", "position": 4, "name": "Documentation", "item": "https://ziduri.in/products/marker/docs/"}
+    {"@type": "ListItem", "position": 3, "name": "MarkDW", "item": "https://ziduri.in/products/markdw/"},
+    {"@type": "ListItem", "position": 4, "name": "Documentation", "item": "https://ziduri.in/products/markdw/docs/"}
   ]
 }
 </script>
@@ -74,21 +74,21 @@
     <span class="breadcrumb__sep">/</span>
     <a href="/products/">Products</a>
     <span class="breadcrumb__sep">/</span>
-    <a href="/products/marker/">Marker</a>
+    <a href="/products/markdw/">MarkDW</a>
     <span class="breadcrumb__sep">/</span>
     <span aria-current="page">Documentation</span>
   </nav>
 
   <section class="section--tight container">
     <span class="eyebrow">Documentation</span>
-    <h1 class="section-title">Marker documentation</h1>
-    <p class="section-lede">How Marker's View/Edit/Split modes work, its keyboard shortcuts, install steps per platform, browser mode behavior, and fixes for common issues.</p>
+    <h1 class="section-title">MarkDW documentation</h1>
+    <p class="section-lede">How MarkDW's View/Edit/Split modes, clipboard paste, export, and the Harbor/Sage designs work, its keyboard shortcuts, install steps per platform, browser mode behavior, and fixes for common issues.</p>
   </section>
 
   <section class="section--tight container">
     <div class="prose">
       <h2>How it's built</h2>
-      <p>Marker is a single SvelteKit frontend (static/SPA build) that runs unmodified in two hosts. A platform-detection layer decides at runtime how files actually get read and written: through <a href="https://tauri.app" rel="noopener">Tauri</a>'s Rust backend on desktop, or through the browser's File System Access API on the web. The editor pane is <a href="https://codemirror.net" rel="noopener">CodeMirror 6</a>, lazy-loaded so it costs nothing until you open Edit or Split. Rendering goes through <code>marked</code> with <code>marked-highlight</code> and <code>highlight.js</code> for syntax-highlighted code fences, and every rendered file is passed through <code>DOMPurify.sanitize()</code> before it reaches the page — there's no "trusted source" exception, since the whole point is opening files from disk.</p>
+      <p>MarkDW is a single SvelteKit frontend (static/SPA build) that runs unmodified in two hosts. A platform-detection layer decides at runtime how files actually get read and written: through <a href="https://tauri.app" rel="noopener">Tauri</a>'s Rust backend on desktop, or through the browser's File System Access API on the web. The editor pane is <a href="https://codemirror.net" rel="noopener">CodeMirror 6</a>, lazy-loaded so it costs nothing until you open Edit or Split. Rendering goes through <code>marked</code> with <code>marked-highlight</code> and <code>highlight.js</code> for syntax-highlighted code fences, and every rendered file is passed through <code>DOMPurify.sanitize()</code> before it reaches the page — there's no "trusted source" exception, since the whole point is opening files from disk.</p>
 
       <h2>View, Edit and Split modes</h2>
       <p>Every open file has a mode: <strong>View</strong> renders the markdown read-only, <strong>Edit</strong> shows the CodeMirror source editor, and <strong>Split</strong> shows both side by side, live. <code>Ctrl/Cmd+E</code> toggles between View and Edit; Split is a separate toolbar option. Switching modes never discards unsaved changes — the underlying content is the same string regardless of which pane is showing it.</p>
@@ -96,8 +96,27 @@
       <h2>Opening files and folders</h2>
       <p><strong>Open File</strong> opens a single <code>.md</code> file. <strong>Open Folder</strong> lists that folder's top-level markdown files in the sidebar so you can switch between them with a click — it does not recurse into subfolders. Selecting a different file while the current one has unsaved changes triggers a confirmation prompt before switching.</p>
 
+      <h2>New from Clipboard</h2>
+      <p>The <strong>New from Clipboard</strong> button (in the sidebar and the empty-state screen) reads text from your system clipboard and opens it as a new, unsaved document. The clipboard is read only at the moment you click it — never automatically, and never in the background. Because a pasted document has no backing file on disk, saving it goes through the same "save as" flow as any brand-new file, rather than writing in place.</p>
+
       <h2>Saving</h2>
-      <p><code>Ctrl/Cmd+S</code> saves the current file in place. On desktop this writes directly to the original path via a Tauri command, with a retry if the write is momentarily blocked (e.g. by another process holding the file). In the browser, save-in-place works the same way in Chromium browsers via the File System Access API; in browsers without that API, saving downloads a new file instead of overwriting the original.</p>
+      <p>The toolbar's <strong>Save</strong> button (or <code>Ctrl/Cmd+S</code>) saves the current file in place. On desktop this writes directly to the original path via a Tauri command, with a retry if the write is momentarily blocked (e.g. by another process holding the file). In the browser, save-in-place works the same way in Chromium browsers via the File System Access API; in browsers without that API, saving downloads a new file instead of overwriting the original.</p>
+
+      <h2>Exporting</h2>
+      <p>The <strong>Export ▾</strong> menu offers three formats, all generated locally with nothing uploaded anywhere:</p>
+      <ul>
+        <li><strong>as HTML</strong> — a single self-contained <code>.html</code> file with its own inline stylesheet, so it looks reasonable on its own without depending on MarkDW's theme system.</li>
+        <li><strong>as PDF…</strong> — switches to View (or keeps Split) and calls the browser's native <code>window.print()</code>, so the OS/browser print dialog opens with the rendered document as the page. Choose "Save as PDF" (or a real printer) from there — there's no bundled PDF-generation library, it's the same print pipeline as any other page.</li>
+        <li><strong>as Plain Text</strong> — the visible, rendered text of the preview (what you'd get selecting-all and copying it), not the raw markdown source — Open/Save already gives you that.</li>
+      </ul>
+      <p>On desktop, HTML and plain-text exports go through a native save dialog, the same as Save. On the web, they download as a new file via the browser's normal download mechanism.</p>
+
+      <h2>About MarkDW</h2>
+      <p>The <strong>ⓘ</strong> icon in the toolbar opens an About dialog showing the current version and a plain-language explainer of exactly what desktop and web builds each do with your data — the same facts documented on this page and in the <a href="/privacy/markdw/">privacy policy</a>, kept in the app itself so you don't have to leave it to check.</p>
+
+      <h2>Layout and appearance</h2>
+      <p>The file sidebar can be shrunk to a slim icon rail — click the collapse icon at its top, or expand it again the same way — for a wider editing/preview area on smaller screens or when you just want the file list out of the way.</p>
+      <p>MarkDW ships two built-in designs, chosen from an icon in the sidebar: <strong>Harbor</strong> (the default — teal accents on deep navy) and <strong>Sage</strong> (warm gold on charcoal green). Each has its own light and dark mode, switched separately with the theme toggle. The choice is cosmetic only — every feature works identically regardless of which design or mode is active — and is remembered the next time you open MarkDW, the same way your light/dark preference is.</p>
 
       <h2>Keyboard shortcuts</h2>
       <div class="table-scroll">
@@ -112,7 +131,7 @@
 
       <h2>Installation</h2>
       <h3>Windows</h3>
-      <p>Download <code>Marker_&lt;version&gt;_x64-setup.exe</code> or the <code>.msi</code> from the <a href="https://github.com/tungnath/mdIDE/releases/latest" rel="noopener">latest release</a> and run it — either installer works. Marker isn't code-signed, so Windows SmartScreen will show an "unrecognized publisher" warning the first time: click More info, then Run anyway.</p>
+      <p>Download <code>MarkDW_&lt;version&gt;_x64-setup.exe</code> or the <code>.msi</code> from the <a href="https://github.com/tungnath/mdIDE/releases/latest" rel="noopener">latest release</a> and run it — either installer works. MarkDW isn't code-signed, so Windows SmartScreen will show an "unrecognized publisher" warning the first time: click More info, then Run anyway.</p>
       <h3>macOS</h3>
       <p>Download the <code>.dmg</code> matching your Mac's chip: <code>_aarch64.dmg</code> for Apple Silicon, <code>_x64.dmg</code> for Intel. The app isn't code-signed, so Gatekeeper blocks the first launch — right-click the app in Applications and choose Open once to bypass it. (The <code>.app.tar.gz</code> files in each release are auto-update artifacts, not for manual download.)</p>
       <h3>Linux</h3>
@@ -129,9 +148,11 @@
       <p>Save-in-place needs the File System Access API, which only Chromium-based browsers (Chrome, Edge) currently support. In other browsers, saving always downloads a new file — this is a platform limitation, not something the app can work around.</p>
       <h3>A subfolder's markdown files aren't showing up</h3>
       <p>Open Folder only lists a folder's top-level <code>.md</code> files by design; it doesn't recurse into subfolders. Open a subfolder directly, or open the file individually with Open File.</p>
+      <h3>"New from Clipboard" says the clipboard is empty or blocked</h3>
+      <p>Either the clipboard genuinely has no text, or the browser blocked the read — some browsers only allow clipboard reads triggered by a direct user action, or require the page to have focus. Click into the page first, then try again.</p>
 
       <h2>Source &amp; license</h2>
-      <p>Marker is MIT-licensed and open source. Full source, issues and releases are on <a href="https://github.com/tungnath/mdIDE" rel="noopener">GitHub</a>.</p>
+      <p>MarkDW is MIT-licensed and open source. Full source, issues and releases are on <a href="https://github.com/tungnath/mdIDE" rel="noopener">GitHub</a>.</p>
     </div>
   </section>
 
@@ -142,9 +163,9 @@
         <p class="text-secondary">Back to the product page, release notes, or privacy details.</p>
       </div>
       <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;">
-        <a class="btn btn-secondary" href="/products/marker/">Product overview</a>
-        <a class="btn btn-secondary" href="/products/marker/changelog/">Changelog</a>
-        <a class="btn btn-secondary" href="/privacy/marker/">Privacy policy</a>
+        <a class="btn btn-secondary" href="/products/markdw/">Product overview</a>
+        <a class="btn btn-secondary" href="/products/markdw/changelog/">Changelog</a>
+        <a class="btn btn-secondary" href="/privacy/markdw/">Privacy policy</a>
       </div>
     </div>
   </section>
@@ -168,7 +189,7 @@
           <li><a href="/products/liteview/">LiteView</a></li>
           <li><a href="/products/ephemera/">Ephemera</a></li>
           <li><a href="/products/anon-postal/">Anon Postal</a></li>
-          <li><a href="/products/marker/">Marker</a></li>
+          <li><a href="/products/markdw/">MarkDW</a></li>
         </ul>
       </div>
       <div class="footer-col">

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="mkTitle">
+  <title id="mkTitle">Illustration of the MarkDW window in the Harbor design: an icon rail, a file sidebar, a View/Split/Edit toolbar with Save and Export, and a split pane showing markdown source next to its rendered preview</title>
+  <defs>
+    <linearGradient id="mkWin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00182f"/>
+      <stop offset="100%" stop-color="#001127"/>
+    </linearGradient>
+  </defs>
+
+  <!-- window -->
+  <rect x="16" y="16" width="608" height="368" rx="14" fill="url(#mkWin)" stroke="#0a2a4a"/>
+
+  <!-- title bar -->
+  <rect x="16" y="16" width="608" height="34" rx="14" fill="#001127"/>
+  <circle cx="38" cy="33" r="5" fill="#e0605e"/>
+  <circle cx="56" cy="33" r="5" fill="#f0b429"/>
+  <circle cx="74" cy="33" r="5" fill="#43b581"/>
+  <text x="320" y="38" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="12" fill="#7fa8b8">MarkDW — ARCHITECTURE.md</text>
+
+  <!-- toolbar -->
+  <rect x="16" y="50" width="608" height="32" fill="#001c4b"/>
+  <rect x="30" y="58" width="140" height="16" rx="8" fill="#00263f"/>
+  <rect x="30" y="58" width="45" height="16" rx="8" fill="#00858c"/>
+  <text x="52" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f4fbfb">View</text>
+  <text x="98" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7fa8b8">Split</text>
+  <text x="145" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7fa8b8">Edit</text>
+  <rect x="486" y="58" width="52" height="17" rx="8" fill="#00263f" stroke="#0a3a5c"/>
+  <text x="512" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7fa8b8">Save</text>
+  <rect x="546" y="58" width="62" height="17" rx="8" fill="#00858c"/>
+  <text x="577" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f4fbfb">Export ▾</text>
+
+  <!-- icon rail (collapsible sidebar, shown expanded here) -->
+  <rect x="16" y="82" width="30" height="284" fill="#001127"/>
+  <rect x="24" y="96" width="14" height="14" rx="4" fill="#00263f"/>
+  <rect x="24" y="118" width="14" height="14" rx="4" fill="#00263f"/>
+  <rect x="24" y="140" width="14" height="14" rx="4" fill="#00263f"/>
+  <circle cx="31" cy="336" r="7" fill="none" stroke="#3c6478" stroke-width="1.2"/>
+  <circle cx="31" cy="358" r="7" fill="none" stroke="#3c6478" stroke-width="1.2"/>
+
+  <!-- file sidebar -->
+  <rect x="46" y="82" width="120" height="284" fill="#00152f"/>
+  <text x="58" y="104" font-family="Arial, sans-serif" font-size="10" fill="#4d7a8f" letter-spacing="1">MDIDE-NOTES</text>
+  <rect x="54" y="118" width="104" height="26" rx="6" fill="#00263f"/>
+  <text x="64" y="135" font-family="Arial, sans-serif" font-size="11" fill="#dcebef">README.md</text>
+  <rect x="54" y="150" width="104" height="26" rx="6" fill="#00858c" opacity="0.24"/>
+  <text x="64" y="167" font-family="Arial, sans-serif" font-size="11" fill="#8fe0e2">ARCHITECTURE.md</text>
+  <text x="64" y="199" font-family="Arial, sans-serif" font-size="11" fill="#4d7a8f">TECHNICAL_DESIGN.md</text>
+  <text x="64" y="231" font-family="Arial, sans-serif" font-size="11" fill="#4d7a8f">CHANGELOG.md</text>
+
+  <!-- split: source pane -->
+  <rect x="166" y="82" width="229" height="284" fill="#000d1e"/>
+  <text x="182" y="106" font-family="ui-monospace, Consolas, monospace" font-size="10" fill="#4d7a8f"># Architecture</text>
+  <text x="182" y="128" font-family="ui-monospace, Consolas, monospace" font-size="10" fill="#7fa8b8">High-level shape of the app:</text>
+  <text x="182" y="148" font-family="ui-monospace, Consolas, monospace" font-size="10" fill="#8fe0e2">what runs where, how the</text>
+  <text x="182" y="168" font-family="ui-monospace, Consolas, monospace" font-size="10" fill="#8fe0e2">pieces talk to each other.</text>
+  <text x="182" y="198" font-family="ui-monospace, Consolas, monospace" font-size="10" fill="#4d7a8f">## Data flow</text>
+  <text x="182" y="220" font-family="ui-monospace, Consolas, monospace" font-size="10" fill="#e5605e">- read()</text>
+  <text x="182" y="240" font-family="ui-monospace, Consolas, monospace" font-size="10" fill="#43b581">- save(content)</text>
+  <rect x="182" y="252" width="2" height="14" fill="#00858c"/>
+
+  <!-- split: preview pane -->
+  <rect x="395" y="82" width="229" height="284" fill="#001127"/>
+  <text x="411" y="114" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="bold" fill="#eef7f8">Architecture</text>
+  <text x="411" y="138" font-family="Arial, sans-serif" font-size="10" fill="#a9c7d1">High-level shape of the app:</text>
+  <text x="411" y="154" font-family="Arial, sans-serif" font-size="10" fill="#a9c7d1">what runs where, how the</text>
+  <text x="411" y="170" font-family="Arial, sans-serif" font-size="10" fill="#a9c7d1">pieces talk to each other.</text>
+  <text x="411" y="198" font-family="Georgia, 'Times New Roman', serif" font-size="13" font-weight="bold" fill="#eef7f8">Data flow</text>
+  <rect x="411" y="208" width="188" height="46" rx="6" fill="#00182f" stroke="#0a2a4a"/>
+  <text x="421" y="226" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#e5605e">- read()</text>
+  <text x="421" y="242" font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#43b581">- save(content)</text>
+
+  <!-- status bar -->
+  <rect x="16" y="366" width="608" height="18" fill="#001127"/>
+  <text x="30" y="378" font-family="Arial, sans-serif" font-size="10" fill="#4d7a8f">ARCHITECTURE.md · Split · saved</text>
+  <text x="580" y="378" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#4d7a8f">GFM</text>
+</svg>
