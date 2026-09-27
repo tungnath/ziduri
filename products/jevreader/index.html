@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JevReader — Read what matters, keep every word | Ziduri</title>
+<meta name="description" content="JevReader is a browser-based PDF reader that finds valuable original passages, applies semantic highlights, and exports a locally highlighted copy without rewriting the document.">
+<link rel="canonical" href="https://ziduri.in/products/jevreader/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ziduri">
+<meta property="og:title" content="JevReader — Read what matters, keep every word">
+<meta property="og:description" content="A privacy-conscious PDF reader that highlights valuable original passages without generating a summary or rewriting the document.">
+<meta property="og:url" content="https://ziduri.in/products/jevreader/">
+<meta property="og:image" content="https://ziduri.in/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JevReader — Read what matters, keep every word">
+<meta name="twitter:description" content="Find valuable original passages in a PDF, focus your reading, and export a highlighted copy.">
+<meta name="twitter:image" content="https://ziduri.in/assets/images/og-default.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4338ca">
+
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JevReader",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "description": "A browser-based PDF reader that uses bounded Jev judgements to identify valuable original passages, apply semantic highlights and export a highlighted copy without rewriting the document.",
+  "url": "https://ziduri.in/products/jevreader/",
+  "author": { "@type": "Organization", "name": "Ziduri", "url": "https://ziduri.in/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ziduri.in/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://ziduri.in/products/"},
+    {"@type": "ListItem", "position": 3, "name": "JevReader", "item": "https://ziduri.in/products/jevreader/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does JevReader summarize or rewrite my PDF?",
+      "acceptedAnswer": {"@type": "Answer", "text": "No. JevReader ranks and highlights original sentences from the document. Its Essential Extract is composed of original passages, not generated prose."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The PDF itself stays in your browser. JevReader sends only bounded selected sentence text, sentence IDs and your reading objective for Jev analysis; it does not upload the full file or its filename."}
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of PDFs does JevReader support?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The current pilot supports text-based PDFs such as papers, reports, technical books and documentation. Scanned or image-only PDFs, password-protected PDFs, handwritten documents, EPUB and DOCX files are not supported yet."}
+    },
+    {
+      "@type": "Question",
+      "name": "What are Focus modes?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Focus modes show a locally selected share of analyzed passages: 5%, 10%, 20%, 40% or Full. Switching modes does not make another Jev request."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I export the highlighted document?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. JevReader applies the visible semantic highlights to a copy of the original PDF in your browser and downloads it as a new PDF."}
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">
+      Ziduri
+    </a>
+    <nav class="nav-primary" data-nav-primary aria-label="Primary">
+      <div class="nav-primary__links">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l-1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="breadcrumb__sep">/</span><a href="/products/">Products</a><span class="breadcrumb__sep">/</span><span aria-current="page">JevReader</span>
+  </nav>
+
+  <section class="section--tight container">
+    <div style="display:flex; gap: var(--z-space-4); align-items:center; margin-bottom: var(--z-space-4);">
+      <img src="/assets/products/jevreader/icon.png" alt="" width="56" height="56" style="border-radius: var(--z-radius-md); border:1px solid var(--z-border);">
+      <div>
+        <span class="badge badge--success">Available now</span>
+        <span class="badge badge--info">Web App</span>
+        <span class="badge badge--warning">Pilot</span>
+      </div>
+    </div>
+    <h1 class="section-title" style="font-size: var(--z-fs-3xl); max-width: 720px;">JevReader: read what matters, keep every word</h1>
+    <p class="section-lede" style="max-width: 680px; font-size: var(--z-fs-lg);">A privacy-conscious PDF reader that finds valuable original passages, highlights them by meaning, and helps you focus without turning the document into a generated summary.</p>
+    <div class="hero__actions" style="margin-top: var(--z-space-5);">
+      <a class="btn btn-primary" href="https://jevreader.indiana.workers.dev/" data-track="product_cta_click" data-track-label="jevreader-open" rel="noopener">Open JevReader</a>
+      <a class="btn btn-secondary" href="#how">How it works</a>
+    </div>
+    <p class="text-tertiary" style="font-size: var(--z-fs-xs); margin-top: var(--z-space-3);">The current pilot supports text-based PDFs. Your file stays in the browser; only selected text needed for Jev analysis leaves it.</p>
+  </section>
+
+  <section class="section--tight container">
+    <div class="illustration">
+      <img src="/assets/products/jevreader/concept-illustration.svg" alt="Illustration of the JevReader workspace with a document outline, semantically highlighted PDF page, and essential extract panel" width="640" height="400" loading="lazy">
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="problem-heading">
+    <div class="section-head">
+      <span class="eyebrow">Problem &amp; solution</span>
+      <h2 class="section-title" id="problem-heading">Long documents deserve better than a summary</h2>
+      <p class="section-lede">A summary can be convenient, but it also replaces the author's wording with someone else's. JevReader keeps the document intact and compresses the reader's attention instead: it ranks original passages, maps them back to the PDF, and lets you choose how much to see.</p>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="features-heading">
+    <div class="section-head"><span class="eyebrow">Features</span><h2 class="section-title" id="features-heading">What JevReader does</h2></div>
+    <div class="feature-grid">
+      <div class="feature-item"><h3 class="feature-item__title">Open a PDF locally</h3><p class="feature-item__desc">Drop a text-based PDF into the browser or choose it from your device. PDF.js renders and parses it locally.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Read immediately</h3><p class="feature-item__desc">The first page opens while the document is still being parsed in a Web Worker, so analysis never blocks reading.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Objective-aware analysis</h3><p class="feature-item__desc">Choose learning, overview, interview, exam, practical, revision, research or a custom reading objective.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Semantic highlights</h3><p class="feature-item__desc">See core concepts, definitions, rules, constraints, practical insights, examples and conclusions in distinct highlight categories.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Focus modes</h3><p class="feature-item__desc">Switch locally between 5%, 10%, 20%, 40% and Full without sending another analysis request.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Essential Extract</h3><p class="feature-item__desc">Review a short set of high-value original sentences and jump back to each sentence's page.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Exact-text find</h3><p class="feature-item__desc">Find a phrase in the author's original text and jump straight to its page. Semantic Find is planned, but not part of the current pilot.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Export highlights</h3><p class="feature-item__desc">Create a new copy of the original PDF with the visible semantic highlights applied entirely in your browser.</p></div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="usecases-heading">
+    <div class="section-head"><span class="eyebrow">Use cases</span><h2 class="section-title" id="usecases-heading">Who JevReader is for</h2></div>
+    <div class="feature-grid">
+      <div class="feature-item"><h3 class="feature-item__title">Technical books</h3><p class="feature-item__desc">Keep the central ideas and constraints visible while working through a long engineering or architecture book.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Research papers</h3><p class="feature-item__desc">Read the source itself, with relevant passages organized around the question you brought to the paper.</p></div>
+      <div class="feature-item"><h3 class="feature-item__title">Reports and documentation</h3><p class="feature-item__desc">Find definitions, procedures and conclusions faster without losing the wording or context that supports them.</p></div>
+    </div>
+  </section>
+
+  <section class="section--tight container" id="how" aria-labelledby="how-heading">
+    <div class="section-head"><span class="eyebrow">How it works</span><h2 class="section-title" id="how-heading">From PDF to focused reading</h2></div>
+    <div class="steps">
+      <div class="step"><h3 class="step__title">Open a document</h3><p class="step__desc">Drop a text-based PDF into JevReader. The file is opened and rendered in your browser.</p></div>
+      <div class="step"><h3 class="step__title">Set an intention</h3><p class="step__desc">Tell JevReader whether you are learning, revising, preparing for an interview, researching, or pursuing another goal.</p></div>
+      <div class="step"><h3 class="step__title">Read while it analyzes</h3><p class="step__desc">Local parsing builds sections, paragraphs and sentence coordinates while Jev evaluates bounded batches of selected source text.</p></div>
+      <div class="step"><h3 class="step__title">Choose your focus</h3><p class="step__desc">Use semantic categories and 5%, 10%, 20%, 40% or Full Focus modes to control the reading view.</p></div>
+      <div class="step"><h3 class="step__title">Export or return to source</h3><p class="step__desc">Jump from an extract to its exact page, or download a locally highlighted copy of the original PDF.</p></div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="permissions-heading">
+    <div class="section-head">
+      <span class="eyebrow">Data &amp; access</span>
+      <h2 class="section-title" id="permissions-heading">What JevReader accesses, and why</h2>
+      <p class="section-lede">JevReader is browser-heavy and server-light. See the <a href="/privacy/jevreader/">privacy policy</a> for the complete data flow.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="perm-table">
+        <thead><tr><th>Capability</th><th>Why it's used</th></tr></thead>
+        <tbody>
+          <tr><td>Local file access</td><td>Reads the PDF you explicitly choose so PDF.js can render it and extract text. The complete file stays in your browser.</td></tr>
+          <tr><td>IndexedDB</td><td>Caches the parsed document structure and completed analysis by document hash, objective and analysis version on this device.</td></tr>
+          <tr><td>Jev analysis API</td><td>Receives bounded batches of selected sentence IDs, source text and your reading objective so Jev can return structured judgements. The PDF and filename are not sent.</td></tr>
+          <tr><td>Web Workers</td><td>Parses document text and coordinates away from the UI thread so you can begin reading quickly.</td></tr>
+          <tr><td>Browser download</td><td>Creates the highlighted PDF copy locally when you choose Export; no document upload is needed.</td></tr>
+          <tr><td>Accounts and analytics</td><td>Not used by the current pilot. There is no sign-in, cloud document library or analytics SaaS.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="faq-heading">
+    <div class="section-head"><span class="eyebrow">FAQ</span><h2 class="section-title" id="faq-heading">Frequently asked questions</h2></div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Does JevReader summarize or rewrite my PDF?<svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="faq-item__body">No. JevReader ranks and highlights original sentences. Its Essential Extract is made from original passages, not generated prose.</p></details>
+      <details class="faq-item"><summary>Is my PDF uploaded?<svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="faq-item__body">The PDF itself stays in your browser. JevReader sends only bounded selected sentence text, IDs and your reading objective to the analysis endpoint, which forwards the selected text to Jev.</p></details>
+      <details class="faq-item"><summary>What kind of PDFs does JevReader support?<svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="faq-item__body">The current pilot supports text-based PDFs such as papers, reports, technical books and documentation. Scanned or image-only PDFs, password-protected PDFs, handwritten documents, EPUB and DOCX files are not supported yet.</p></details>
+      <details class="faq-item"><summary>What are Focus modes?<svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="faq-item__body">Focus modes show a locally selected share of analyzed passages: 5%, 10%, 20%, 40% or Full. Switching modes does not make another Jev request.</p></details>
+      <details class="faq-item"><summary>Can I export the highlighted document?<svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="faq-item__body">Yes. JevReader applies the visible semantic highlights to a copy of the original PDF in your browser and downloads it as a new PDF.</p></details>
+      <details class="faq-item"><summary>Do I need an account?<svg class="faq-item__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="faq-item__body">No account is required for the current pilot. The document, structure and analysis cache stay associated with your browser on this device.</p></details>
+    </div>
+  </section>
+
+  <section class="section--tight container">
+    <div class="card" style="padding: var(--z-space-6); display:flex; flex-wrap:wrap; gap: var(--z-space-4); justify-content:space-between; align-items:center;">
+      <div><h2 class="section-title" style="font-size: var(--z-fs-lg); margin-bottom: var(--z-space-2);">More resources</h2><p class="text-secondary">Documentation, release notes and privacy details.</p></div>
+      <div style="display:flex; gap: var(--z-space-3); flex-wrap:wrap;"><a class="btn btn-secondary" href="/products/jevreader/docs/" data-track="documentation_open">Documentation</a><a class="btn btn-secondary" href="/products/jevreader/changelog/">Changelog</a><a class="btn btn-secondary" href="/privacy/jevreader/" data-track="privacy_open">Privacy policy</a></div>
+    </div>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="related-heading">
+    <div class="section-head"><span class="eyebrow">Related</span><h2 class="section-title" id="related-heading">More from Ziduri</h2></div>
+    <div class="product-grid">
+      <a class="card product-card" href="/products/markdw/"><div class="product-card__top"><img class="product-card__icon" src="/assets/products/markdw/icon.png" alt="" width="48" height="48" loading="lazy"><span class="badge badge--info">Desktop Application</span></div><div><h3 class="product-card__name">MarkDW</h3><p class="product-card__desc">A lightweight markdown viewer and editor for reading and editing source documents.</p></div></a>
+      <a class="card product-card" href="/products/liteview/"><div class="product-card__top"><img class="product-card__icon" src="/assets/products/liteview/icon.png" alt="" width="48" height="48" loading="lazy"><span class="badge badge--info">Desktop Application</span></div><div><h3 class="product-card__name">LiteView</h3><p class="product-card__desc">A tiny desktop image viewer for modern formats, with thumbnails and keyboard navigation.</p></div></a>
+      <a class="card product-card" href="/products/ephemera/"><div class="product-card__top"><img class="product-card__icon" src="/assets/products/ephemera/icon.png" alt="" width="48" height="48" loading="lazy"><span class="badge badge--info">Web App</span></div><div><h3 class="product-card__name">Ephemera</h3><p class="product-card__desc">A short-lived room for exchanging end-to-end encrypted text and images.</p></div></a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="brand" href="/"><img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">Ziduri</a><p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p></div>
+      <div class="footer-col"><div class="footer-col__title">Products</div><ul><li><a href="/products/">All products</a></li><li><a href="/products/browser-native-notes/">Float Note</a></li><li><a href="/products/liteview/">LiteView</a></li><li><a href="/products/ephemera/">Ephemera</a></li><li><a href="/products/anon-postal/">Anon Postal</a></li><li><a href="/products/markdw/">MarkDW</a></li><li><a href="/products/jevreader/">JevReader</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col__title">Company</div><ul><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col__title">Legal</div><ul><li><a href="/privacy/">Privacy</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Ziduri. All rights reserved.</p><p>Built in India.</p></div>
+  </div>
+</footer>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

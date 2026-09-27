@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JevReader Documentation — Ziduri</title>
+<meta name="description" content="How JevReader parses PDFs locally, sends bounded source passages for Jev analysis, applies Focus modes, caches results and exports highlighted PDFs.">
+<link rel="canonical" href="https://ziduri.in/products/jevreader/docs/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Ziduri"><meta property="og:title" content="JevReader Documentation"><meta property="og:description" content="How JevReader parses PDFs locally, analyzes bounded source passages and exports highlighted PDFs."><meta property="og:url" content="https://ziduri.in/products/jevreader/docs/"><meta property="og:image" content="https://ziduri.in/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="JevReader Documentation"><meta name="twitter:description" content="How JevReader parses PDFs locally, analyzes bounded source passages and exports highlighted PDFs."><meta name="twitter:image" content="https://ziduri.in/assets/images/og-default.png">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#4338ca">
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/site.css">
+<script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ziduri.in/"},{"@type":"ListItem","position":2,"name":"Products","item":"https://ziduri.in/products/"},{"@type":"ListItem","position":3,"name":"JevReader","item":"https://ziduri.in/products/jevreader/"},{"@type":"ListItem","position":4,"name":"Documentation","item":"https://ziduri.in/products/jevreader/docs/"}]}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container site-header__bar"><a class="brand" href="/"><img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">Ziduri</a><nav class="nav-primary" data-nav-primary aria-label="Primary"><div class="nav-primary__links"><a href="/products/" aria-current="page">Products</a><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/contact/">Contact</a></div><div class="header-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l-1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav></div></header>
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb"><a href="/">Home</a><span class="breadcrumb__sep">/</span><a href="/products/">Products</a><span class="breadcrumb__sep">/</span><a href="/products/jevreader/">JevReader</a><span class="breadcrumb__sep">/</span><span aria-current="page">Documentation</span></nav>
+  <section class="section--tight container"><span class="eyebrow">Documentation</span><h1 class="section-title">JevReader documentation</h1><p class="section-lede">How JevReader parses PDFs locally, analyzes bounded source passages and turns structured judgements into a focused reading view.</p></section>
+  <section class="section--tight container"><div class="prose">
+    <h2>What JevReader does</h2>
+    <p>JevReader is an extractive reader. It does not ask Jev to write a summary or rewrite your document. Instead, the browser keeps the original PDF and Jev returns structured judgements about selected source sentences: importance, relevance to your reading objective, whether a sentence is essential, and its semantic role.</p>
+
+    <h2>Opening a PDF</h2>
+    <p>Choose a PDF with <strong>Open a PDF</strong>, or drop one onto the landing page. The browser computes a SHA-256 document identifier, loads the PDF with PDF.js, and renders the first page while a separate Web Worker continues extracting text and coordinates. No account is required.</p>
+    <p>The current pilot is designed for text-based PDFs. Scanned or image-only PDFs, password-protected PDFs, handwritten documents, EPUB and DOCX files are not supported, and OCR is not included.</p>
+
+    <h2>Reading objectives</h2>
+    <p>Before analysis begins, choose one of the built-in objectives: learn the subject, quick overview, interview preparation, exam preparation, practical implementation, revision or research. You can also enter a custom objective. The objective changes how Jev evaluates the same original passages.</p>
+
+    <h2>How the local document model works</h2>
+    <p>JevReader maps each extracted sentence back to its page, paragraph, section and PDF rectangles. This mapping lets the reader draw highlights over the rendered page, lets an Essential Extract jump to the source page, and lets export place the same highlights on a new PDF copy.</p>
+    <p>Parsing is progressive: sections and pages appear as they are read. Back matter such as contents, references, bibliography and indexes is excluded from automatic highlights when it can be identified reliably.</p>
+
+    <h2>Analysis and caching</h2>
+    <p>Analysis is sent in bounded batches of up to eight sentences. The browser sends sentence IDs, the selected source text and the reading objective to the JevReader API. The server constructs the approved Jev questions, keeps the API key secret, validates the request and returns structured results. It does not receive the PDF file or filename.</p>
+    <p>Completed section results are saved in IndexedDB and keyed by the document hash, objective and analysis version. If you open the same document and choose the same objective on the same browser, completed analysis can be reused locally. Failed sections can be paused, retried and resumed without discarding completed passages.</p>
+
+    <h2>Focus modes and semantic categories</h2>
+    <p>Focus modes are local filters over completed analysis. Choose <strong>5%</strong>, <strong>10%</strong>, <strong>20%</strong>, <strong>40%</strong> or <strong>Full</strong>. Ranking combines Jev's structured signals in application code and applies a per-paragraph density cap to reduce repetitive selections. Changing the mode does not call Jev again.</p>
+    <p>Highlight colors describe a passage's role rather than simply its rank: core concept, definition, rule or principle, constraint or warning, trade-off, practical insight, procedure, evidence, example, background or conclusion. The legend can hide categories from the reading view.</p>
+
+    <h2>Essential Extract</h2>
+    <p>The right-hand panel shows a short extract made from original sentences that scored highly. Click an extract to jump to its page. It is deliberately not a generated summary: every displayed word comes from the document you opened.</p>
+
+    <h2>Find</h2>
+    <p>The search control currently provides exact-text find over the locally parsed source sentences and shows matching page numbers. A future semantic-find mode may rank passages for a natural-language question, but that is not part of the current pilot.</p>
+
+    <h2>Exporting a highlighted PDF</h2>
+    <p>Choose the download button after analysis. JevReader loads the original PDF bytes in the browser, draws the visible semantic highlights with <code>pdf-lib</code>, and downloads a new file ending in <code>.jevreader.pdf</code>. The original file is not overwritten and no upload is needed for export.</p>
+
+    <h2>Keyboard controls</h2>
+    <div class="table-scroll"><table class="perm-table"><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody><tr><td><code>←</code> / <code>→</code></td><td>Previous or next PDF page</td></tr><tr><td><code>1</code>–<code>4</code></td><td>5%, 10%, 20% or 40% Focus mode</td></tr><tr><td><code>5</code></td><td>Full view</td></tr></tbody></table></div>
+
+    <h2>Limits and failure handling</h2>
+    <p>Reading does not depend on successful Jev analysis. If a request times out or a section fails, the PDF remains available, completed sections stay saved locally, and the interface offers retry. The pilot also enforces bounded request size, sentence count, question count, origin checks, a timeout and a concurrency ceiling.</p>
+
+    <h2>Source and status</h2>
+    <p>JevReader is an early public pilot deployed at <a href="https://jevreader.indiana.workers.dev/" rel="noopener">jevreader.indiana.workers.dev</a>. Its current implementation uses React, TypeScript, Vite, PDF.js, pdf-lib, IndexedDB, Web Workers, Hono and Cloudflare Workers. The product is under active development; see the <a href="/products/jevreader/changelog/">changelog</a> for the current release boundary.</p>
+    <h2>Related</h2><p><a href="/products/jevreader/">Product overview</a>, <a href="/products/jevreader/changelog/">release notes</a> or <a href="/privacy/jevreader/">privacy details</a>.</p>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="/"><img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">Ziduri</a><p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p></div><div class="footer-col"><div class="footer-col__title">Products</div><ul><li><a href="/products/">All products</a></li><li><a href="/products/browser-native-notes/">Float Note</a></li><li><a href="/products/liteview/">LiteView</a></li><li><a href="/products/ephemera/">Ephemera</a></li><li><a href="/products/anon-postal/">Anon Postal</a></li><li><a href="/products/markdw/">MarkDW</a></li><li><a href="/products/jevreader/">JevReader</a></li></ul></div><div class="footer-col"><div class="footer-col__title">Company</div><ul><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div><div class="footer-col"><div class="footer-col__title">Legal</div><ul><li><a href="/privacy/">Privacy</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 Ziduri. All rights reserved.</p><p>Built in India.</p></div></div></footer>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

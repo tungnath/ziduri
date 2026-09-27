@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JevReader Privacy Policy — Ziduri</title>
+<meta name="description" content="JevReader's privacy policy: PDFs stay in your browser, while only bounded selected text and a reading objective are sent for Jev analysis.">
+<link rel="canonical" href="https://ziduri.in/privacy/jevreader/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Ziduri"><meta property="og:title" content="JevReader Privacy Policy"><meta property="og:description" content="How JevReader handles local PDFs, cached analysis and the selected text sent for Jev analysis."><meta property="og:url" content="https://ziduri.in/privacy/jevreader/"><meta property="og:image" content="https://ziduri.in/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="JevReader Privacy Policy"><meta name="twitter:description" content="How JevReader handles local PDFs, cached analysis and the selected text sent for Jev analysis."><meta name="twitter:image" content="https://ziduri.in/assets/images/og-default.png">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/icons/icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#4338ca">
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/site.css"><script>try{var t=localStorage.getItem("ziduri-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ziduri.in/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"https://ziduri.in/privacy/"},{"@type":"ListItem","position":3,"name":"JevReader","item":"https://ziduri.in/privacy/jevreader/"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container site-header__bar"><a class="brand" href="/"><img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">Ziduri</a><nav class="nav-primary" data-nav-primary aria-label="Primary"><div class="nav-primary__links"><a href="/products/">Products</a><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/contact/">Contact</a></div><div class="header-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l-1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav></div></header>
+<main id="main">
+  <nav class="breadcrumb container" aria-label="Breadcrumb"><a href="/">Home</a><span class="breadcrumb__sep">/</span><a href="/privacy/">Privacy</a><span class="breadcrumb__sep">/</span><span aria-current="page">JevReader</span></nav>
+  <section class="section--tight container"><span class="eyebrow">Privacy</span><h1 class="section-title">JevReader Privacy Policy</h1><p class="text-tertiary" style="font-size: var(--z-fs-sm);">Effective date: September 2026 · Version 1.0 · Applies to the JevReader web app and its Jev analysis API</p></section>
+  <section class="section--tight container"><div class="prose">
+    <div class="callout callout--info"><strong>In short:</strong> The complete PDF stays in your browser. JevReader sends only bounded selected source text, sentence IDs, a document hash, a section identifier and your reading objective to its analysis endpoint so Jev can return structured reading signals.</div>
+
+    <h2>Overview</h2>
+    <p>JevReader is a browser-based PDF reader from Ziduri. It renders and parses the PDF you explicitly open, identifies original passages that may be valuable for your chosen reading objective, and can download a locally highlighted copy. No account is required for the current pilot.</p>
+
+    <h2>What data is processed locally</h2>
+    <ul>
+      <li><strong>PDF content:</strong> the file you choose is held in browser memory so it can be rendered, parsed and exported.</li>
+      <li><strong>Document metadata:</strong> a SHA-256 document identifier, the selected filename, page count and parsed structure are used to associate the document with its local cache.</li>
+      <li><strong>Reading analysis:</strong> sentence coordinates, semantic roles, scores, the selected reading objective and completed analysis results are stored locally when caching is available.</li>
+      <li><strong>Export data:</strong> the original PDF bytes and visible highlight rectangles are processed locally only when you choose to export.</li>
+    </ul>
+    <p>JevReader does not ask for your name, email address, account credentials or payment information.</p>
+
+    <h2>What leaves the browser</h2>
+    <p>When you start intelligent reading, the browser sends bounded analysis requests to JevReader's <code>/api/jev/analyze</code> endpoint. Each request contains selected sentence IDs and their source text, the document hash, a section ID and the reading objective. The endpoint forwards the approved structured questions and selected source text to TypeSafe's Jev API, then returns sanitized judgements.</p>
+    <p>The complete PDF, its filename and the browser's local cache are not uploaded to Ziduri's server. Exact-text find runs over the locally parsed sentences and is not sent as a search query for the current pilot.</p>
+
+    <h2>Where data is stored</h2>
+    <p>PDF bytes, parsed document structures and completed analysis are held in your browser's memory and IndexedDB. JevReader does not maintain a document database, object store or cloud document library. Closing the document clears its in-memory bytes; clearing the site's browser data removes the locally cached metadata and analysis.</p>
+    <p>The deployed app and analysis proxy run on Cloudflare Workers and Static Assets. The proxy is designed to be stateless and does not persist document content. TypeSafe receives selected source text to perform Jev analysis; its processing and retention are governed by TypeSafe's own terms and privacy documentation.</p>
+
+    <h2>Operational logs</h2>
+    <p>The analysis proxy's application logs are intentionally limited to operational information such as request status, latency, bounded input size, question count, usage information and an error category. It does not intentionally log PDF text, filenames or search query contents. Cloudflare may process standard infrastructure metadata needed to deliver the service and protect it from abuse.</p>
+
+    <h2>Third parties and analytics</h2>
+    <ul>
+      <li><strong>Cloudflare:</strong> hosts the static app and the Hono API proxy.</li>
+      <li><strong>TypeSafe Jev:</strong> evaluates the selected source passages and reading objective sent by the proxy.</li>
+      <li><strong>Google Fonts:</strong> the app requests its interface fonts from Google Fonts when the stylesheet loads.</li>
+    </ul>
+    <p>JevReader does not use analytics, advertising, account providers, payment processors or a third-party analytics SaaS in the current pilot.</p>
+
+    <h2>Authentication and payments</h2>
+    <p>There is no user account, sign-in or payment functionality. A private pilot may optionally require a server-side pilot token, but that token is not an identity system and is not stored in your document cache.</p>
+
+    <h2>Security model</h2>
+    <p>The TypeSafe API key is kept as a server-side deployment secret and is never placed in browser-visible configuration. Requests are schema-validated and bounded, origins are checked, and the proxy applies timeout and concurrency limits. These measures reduce exposure and abuse; no online service can guarantee absolute security.</p>
+
+    <h2>Retention and deletion</h2>
+    <p>JevReader itself does not retain the PDF or maintain a server-side document copy. To remove local data, clear JevReader's site data in your browser; this removes its IndexedDB cache and preferences. Exported PDFs are ordinary files saved wherever you choose and must be deleted from your device separately.</p>
+    <p>Selected text sent to TypeSafe is processed by that provider to answer the analysis request. Questions about provider-side processing or deletion should be directed to the provider under its applicable terms.</p>
+
+    <h2>Your rights</h2>
+    <p>Because most document data remains on your device and Ziduri does not maintain a user account, we generally cannot access or export your local PDF cache. You can clear it yourself at any time. If you have a privacy question or believe the service has processed personal information about you, contact us and we will explain what can be addressed from our side.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>JevReader is an early-stage pilot. If it adds accounts, persistent document storage, OCR, analytics or another material data flow, this policy will be updated first and the version and effective date above will change.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy can be sent through the <a href="/contact/">contact page</a>.</p>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="/"><img class="brand__mark" src="/assets/icons/mark.png" alt="" width="28" height="28">Ziduri</a><p class="footer-brand__desc">Lightweight software for everyday digital work — browser extensions, apps and developer tools built with quiet, deliberate design.</p></div><div class="footer-col"><div class="footer-col__title">Products</div><ul><li><a href="/products/">All products</a></li><li><a href="/products/browser-native-notes/">Float Note</a></li><li><a href="/products/liteview/">LiteView</a></li><li><a href="/products/ephemera/">Ephemera</a></li><li><a href="/products/anon-postal/">Anon Postal</a></li><li><a href="/products/markdw/">MarkDW</a></li><li><a href="/products/jevreader/">JevReader</a></li></ul></div><div class="footer-col"><div class="footer-col__title">Company</div><ul><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div><div class="footer-col"><div class="footer-col__title">Legal</div><ul><li><a href="/privacy/">Privacy</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 Ziduri. All rights reserved.</p><p>Built in India.</p></div></div></footer>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>
