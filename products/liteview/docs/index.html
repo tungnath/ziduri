@@ -88,7 +88,7 @@
   <section class="section--tight container">
     <div class="prose">
       <h2>How image decoding works</h2>
-      <p>LiteView is built on <a href="https://neutralino.js.org" rel="noopener">Neutralinojs</a>: a small native window hosts the operating system's own web rendering engine — WebView2 on Windows, WebKitGTK on Linux, WKWebView on macOS — and that engine decodes every image. Because SVG, WebP and AVIF are all formats modern browsers already understand, LiteView gets native support for them for free, with no bundled codecs and no separate Electron/Chromium runtime to ship.</p>
+      <p>LiteView is built on <a href="https://neutralino.js.org" rel="noopener">Neutralinojs</a>: a small native window hosts the operating system's own web rendering engine — WebView2 on Windows, WebKitGTK on Linux, WKWebView on macOS — and that engine decodes every image. Because SVG, WebP and AVIF are formats modern web engines can understand, LiteView does not bundle a separate codec pack or Electron/Chromium runtime. Windows 10/11 and macOS 13+ provide the required runtime; Linux requires WebKitGTK 4.1 or a compatible package.</p>
 
       <h2>Supported formats</h2>
       <p>SVG, WebP, AVIF, PNG, JPEG, GIF, BMP and ICO.</p>
