@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="120 40 440 440" role="img">
+  <title>Make Palette</title>
+  <desc>Four colourful swatches fan out behind a floating interface frame.</desc>
+  <defs>
+    <clipPath id="make-palette-icon-clip"><rect x="120" y="40" width="440" height="440" rx="100" /></clipPath>
+  </defs>
+  <rect x="120" y="40" width="440" height="440" rx="100" fill="#0D0820" />
+  <g clip-path="url(#make-palette-icon-clip)">
+    <rect x="299" y="188" width="82" height="308" rx="22" fill="#6A2C8E" transform="rotate(40 340 492)" />
+    <rect x="299" y="188" width="82" height="308" rx="22" fill="#B83B5B" transform="rotate(13 340 492)" />
+    <rect x="299" y="188" width="82" height="308" rx="22" fill="#F08A5D" transform="rotate(-13 340 492)" />
+    <rect x="299" y="188" width="82" height="308" rx="22" fill="#F9ED69" transform="rotate(-40 340 492)" />
+    <rect x="260" y="98" width="160" height="132" rx="20" fill="#0D0820" fill-opacity=".52" stroke="#FFF" stroke-opacity=".48" stroke-width="3.5" />
+    <rect x="274" y="114" width="132" height="8" rx="4" fill="#FFF" fill-opacity=".55" />
+    <rect x="274" y="130" width="98" height="5" rx="2.5" fill="#FFF" fill-opacity=".32" />
+    <rect x="274" y="143" width="72" height="5" rx="2.5" fill="#FFF" fill-opacity=".32" />
+    <rect x="274" y="159" width="132" height="15" rx="5" fill="#FFF" fill-opacity=".18" />
+    <rect x="274" y="180" width="132" height="15" rx="5" fill="#FFF" fill-opacity=".18" />
+    <rect x="274" y="201" width="132" height="15" rx="5" fill="#FFF" fill-opacity=".18" />
+  </g>
+</svg>
